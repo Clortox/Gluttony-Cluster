@@ -1,0 +1,16 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: notify
+    image: clortox/drone-ntfy
+    settings:
+      URL: https://ntfy.clortox.com
+      USERNAME: drone
+      PASSWORD:
+        from_secret: ntfy_password
+      TOPIC: drone-builds
+      MESSAGE: Flux configuration updated 
+      CLICK: https://git.clortox.com/Infrastructure/Gluttony-Cluster/
+      TITLE: Flux configuration updated
+      PRIROITY: High
