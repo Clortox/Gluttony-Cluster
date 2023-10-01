@@ -12,5 +12,5 @@ steps:
       TOPIC: drone-builds
       MESSAGE: Flux configuration updated 
       CLICK: https://git.clortox.com/Infrastructure/Gluttony-Cluster/
-      TITLE: Flux configuration updated
+      TITLE: Flux configuration updated! Check if out.
       PRIROITY: High
