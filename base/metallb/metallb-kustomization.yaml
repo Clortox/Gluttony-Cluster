@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: sealed-secrets
+  name: metallb--metallb-system
   namespace: flux-system
 spec:
   interval: 15m
-  path: sealed-secrets-system
+  path: metallb
   prune: true # remove any elements later removed from the above path
   timeout: 2m # if not set, this defaults to interval duration, which is 1h
   sourceRef:
@@ -14,6 +14,5 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: sealed-secrets
-      namespace: sealed-secrets
-
+      name: metallb-controller
+      namespace: metallb-system
