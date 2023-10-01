@@ -10,7 +10,7 @@ steps:
       PASSWORD:
         from_secret: ntfy_password
       TOPIC: drone-builds
-      MESSAGE: Flux configuration updated 
+      MESSAGE: Flux configuration updated! Check if out.
       CLICK: https://git.clortox.com/Infrastructure/Gluttony-Cluster/
-      TITLE: Flux configuration updated! Check if out.
+      TITLE: Gluttony-Cluster
       PRIROITY: High
