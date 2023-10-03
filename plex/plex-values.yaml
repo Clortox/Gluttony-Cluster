@@ -46,11 +46,11 @@ data:
     # -- Configures service settings for the chart.
     # @default -- See values.yaml
     service:
-      type: LoadBalancer
       main:
         primary: true
         ports:
           http:
+            type: LoadBalancer
             port: 32400
       dnla-tcp:
         enabled: false
