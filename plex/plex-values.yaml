@@ -5,7 +5,6 @@ metadata:
   namespace: plex-ns
 data:
   values.yaml: |-
-
     # Custom values
     nodeSelector:
       kubernetes.io/hostname: gluttony
@@ -46,12 +45,12 @@ data:
     # -- Configures service settings for the chart.
     # @default -- See values.yaml
     service:
-      main:
-        primary: true
-        ports:
-          http:
-            type: LoadBalancer
-            port: 32400
+      #main:
+      #  type: LoadBalancer
+      #  primary: true
+      #  ports:
+      #    http:
+      #      port: 32400
       dnla-tcp:
         enabled: false
         type: NodePort
