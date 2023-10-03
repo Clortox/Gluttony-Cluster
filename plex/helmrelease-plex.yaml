@@ -18,4 +18,5 @@ spec:
   valuesFrom:
   - kind: ConfigMap
     name: plex-values
+    namespace: plex-ns
     valuesKey: values.yaml
