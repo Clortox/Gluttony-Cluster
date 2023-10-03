@@ -5,6 +5,7 @@ metadata:
   namespace: plex-ns
 data:
   values.yaml: |-
+
     # Custom values
     nodeSelector:
       kubernetes.io/hostname: gluttony
@@ -46,6 +47,7 @@ data:
     # @default -- See values.yaml
     service:
       main:
+        type: LoadBalancer
         primary: true
         ports:
           http:
