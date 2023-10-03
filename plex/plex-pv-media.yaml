@@ -4,8 +4,8 @@ metadata:
   name: plex-pv-media
 spec:
   storageClassName: local-storage
-    #capacity:
-    #storage: 100Gi
+  capacity:
+    storage: 18000Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
