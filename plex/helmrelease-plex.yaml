@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.flucd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: plex
+  namespace: plex-ns
+spec:
+  chart:
+    spec:
+      chart: plex
+      version: 7.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-homelab
+        namespace: flux-system
+  interval: 15m0s
+  timeout: 5m
+  releaseName: plex
+  valuesFrom:
+  - kind: ConfigMap
+    name: plex-values
+    valuesKey: values.yaml
