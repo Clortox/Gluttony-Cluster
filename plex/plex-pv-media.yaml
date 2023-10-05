@@ -7,12 +7,12 @@ spec:
   capacity:
     storage: 18000Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   hostPath:
     path: "/Main/Media"
   nodeAffinity:
     required:
-      nodeSelectorTerms:
+      ndeSelectorTerms:
       - matchExpressions:
         - key: kubernetes.io/hostname
           operator: In

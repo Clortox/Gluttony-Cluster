@@ -3,8 +3,8 @@ kind: HelmRelease
 metadata:
   name: plex
   namespace: plex-ns
-  annotations:
-    force-recreate: true
+    #annotations:
+    #force-recreate: true
 spec:
   chart:
     spec:
@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: k8s-homelab
         namespace: flux-system
-  interval: 15m0s
+  interval: 15m0s 
   timeout: 5m
   releaseName: plex
   values:
@@ -103,6 +103,13 @@ spec:
         size: 120Gi
         accessMode: ReadWriteOnce
         mountPath: "/config"
+      media:
+        enabled: true
+        existingClaim: "plex-pv-media"
+        storageClass: "local-storage"
+        size: 18000Gi
+        accessMode: ReadWriteMany
+        mountPath: "/data"
 
           #  transcode:
           #    enabled: false
