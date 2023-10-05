@@ -99,13 +99,14 @@ spec:
     persistence:
       config:
         enabled: true 
+        existingClaim: "plex-pvc-config"
         storageClass: "local-storage"
         size: 120Gi
         accessMode: ReadWriteOnce
         mountPath: "/config"
       media:
         enabled: true
-        existingClaim: "persistentvolume/plex-pv-media"
+        existingClaim: "plex-pvc-media"
         storageClass: "local-storage"
         size: 18000Gi
         accessMode: ReadWriteMany
