@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: plex
   namespace: plex-ns
+  annotations:
+    force-recreate: true
 spec:
   chart:
     spec:
@@ -94,17 +96,17 @@ spec:
 
     # -- Configure persistence settings for the chart under this key.
     # @default -- See values.yaml
-    #persistence:
-    #  config:
-    #    enabled: true 
-    #    storageClass: "local-storage"
-    #    size: 10Gi
-    #    accessMode: ReadWriteOnce
-    #    mountPath: /config
+    persistence:
+      config:
+        enabled: true 
+        storageClass: "local-storage"
+        size: 120Gi
+        accessMode: ReadWriteOnce
+        mountPath: "/config"
 
-    #  transcode:
-    #    enabled: false
-    #    mountPath: /transcode
+          #  transcode:
+          #    enabled: false
+          #    mountPath: /transcode
 
     # -- Configure the Security Context for the Pod
     podSecurityContext: {}
