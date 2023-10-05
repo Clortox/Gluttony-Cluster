@@ -12,7 +12,7 @@ spec:
     path: "/Main/Media"
   nodeAffinity:
     required:
-      ndeSelectorTerms:
+      nodeSelectorTerms:
       - matchExpressions:
         - key: kubernetes.io/hostname
           operator: In
