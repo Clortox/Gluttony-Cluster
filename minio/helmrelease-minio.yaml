@@ -48,7 +48,7 @@ spec:
       pullPolicy: IfNotPresent
 
     ## minio mode, i.e. standalone or distributed
-    mode: distributed ## other supported values are "standalone"
+    mode: standalone ## other supported values are "standalone"
 
     ## Additional labels to include with deployment or statefulset
     additionalLabels: {}
@@ -106,8 +106,9 @@ spec:
     ## AccessKey and secretKey is generated when not set
     ## Distributed MinIO ref: https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-multi-node-multi-drive.html
     ##
-    rootUser: ""
-    rootPassword: ""
+    #rootUser: ""
+    #rootPassword: ""
+    #
 
     ## Use existing Secret that store following variables:
     ##
@@ -119,7 +120,7 @@ spec:
     ## All mentioned variables will be ignored in values file.
     ## .data.rootUser and .data.rootPassword are mandatory,
     ## others depend on enabled status of corresponding sections.
-    existingSecret: ""
+    existingSecret: "minio-default-credentials"
 
     ## Directory on the MinIO pof
     certsPath: "/etc/minio/certs/"
@@ -136,7 +137,7 @@ spec:
     # Number of drives attached to a node
     drivesPerNode: 1
     # Number of MinIO containers running
-    replicas: 16
+    replicas: 1
     # Number of expanded MinIO clusters
     pools: 1
 
@@ -159,12 +160,12 @@ spec:
     ##
     persistence:
       enabled: true
-      annotations: {}
+        #annotations: {}
 
       ## A manually managed Persistent Volume and Claim
       ## Requires persistence.enabled: true
       ## If defined, PVC must be created manually before volume will be bound
-      existingClaim: ""
+      #existingClaim: ""
 
       ## minio data Persistent Volume Storage Class
       ## If defined, storageClassName: <storageClass>
@@ -175,10 +176,10 @@ spec:
       ##
       ## Storage class of PV to bind. By default it looks for standard storage class.
       ## If the PV uses a different storage class, specify that here.
-      storageClass: ""
-      volumeName: ""
+      storageClass: "longhorn"
+        #volumeName: ""
       accessMode: ReadWriteOnce
-      size: 500Gi
+      size: 30Gi
 
       ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
       ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
@@ -190,10 +191,10 @@ spec:
     ## ref: http://kubernetes.io/docs/user-guide/services/
     ##
     service:
-      type: ClusterIP
+      type: LoadBalancer
       clusterIP: ~
       port: "9000"
-      nodePort: 32000
+      nodePort: 9000
       loadBalancerIP: ~
       externalIPs: []
       annotations: {}
@@ -223,10 +224,10 @@ spec:
       #      - chart-example.local
 
     consoleService:
-      type: ClusterIP
+      type: LoadBalancer
       clusterIP: ~
       port: "9001"
-      nodePort: 32001
+      nodePort: 80
       loadBalancerIP: ~
       externalIPs: []
       annotations: {}
