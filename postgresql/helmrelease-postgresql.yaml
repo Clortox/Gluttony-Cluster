@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: postgresql
   namespace: postgresql-system
+  annotations:
+    force-recreate: true
 spec:
   chart:
     spec:
