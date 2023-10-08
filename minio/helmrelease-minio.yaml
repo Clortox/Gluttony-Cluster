@@ -3,8 +3,6 @@ kind: HelmRelease
 metadata:
   name: minio
   namespace: minio-ns
-  annotations:
-    force-recreate: true
 spec:
   chart:
     spec:
