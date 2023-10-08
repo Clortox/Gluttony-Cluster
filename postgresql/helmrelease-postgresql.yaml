@@ -195,8 +195,8 @@ replication:
   applicationName: my_application
 ## @param containerPorts.postgresql PostgreSQL container port
 ##
-containerPorts:
-  postgresql: 5432
+#containerPorts:
+#postgresql: 5432
 ## Audit settings
 ## https://github.com/bitnami/containers/tree/main/bitnami/postgresql#auditing
 ## @param audit.logHostname Log client hostnames
