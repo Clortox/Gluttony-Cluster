@@ -123,7 +123,7 @@ spec:
       redis:
         # -- set the redis hostname to talk to
         # @default -- `{{ .Release.Name }}-redis-master`
-        host: "redis-system.redis-master.svc.cluster.local"
+        host: "redis-master.redis-system.svc.cluster.local"
           #password: ""
 
     # -- List of config maps to mount blueprints from. Only keys in the
