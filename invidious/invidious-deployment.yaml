@@ -44,6 +44,7 @@ spec:
             channel_refresh_interval: 15m
             feed_threads: 2
             banner: "Lol. Lmao even."
+            port: 3000
             default_user_preferences:
               default_home: "Subscriptions"
               quality: dash
