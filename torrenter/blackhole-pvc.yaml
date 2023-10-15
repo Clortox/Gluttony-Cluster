@@ -5,6 +5,7 @@ metadata:
   namespace: torrent-ns
 spec:
   storageClassName: local-storage
+  volumeName: blackhole-pv
   accessModes:
     - ReadWriteMany
   resources:
