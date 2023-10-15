@@ -21,7 +21,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: invidious-secret
-              key: invidous-postgres-password
+              key: invidious-postgres-password
         - name: INVIDIOUS_HMAC_KEY
           valueFrom:
             secretKeyRef:
