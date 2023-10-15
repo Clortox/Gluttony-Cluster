@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freshrss
+  namespace: freshrss-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: freshrss
+  template:
+    metadata:
+      labels:
+        app: freshrss
+    spec:
+      containers:
+      - name: freshrss
+        image: linuxserver/freshrss
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: freshrss-storage
+          mountPath: /config
+      volumes:
+      - name: freshrss-storage
+        persistentVolumeClaim:
+          claimName: freshrss-pvc
+
