@@ -111,7 +111,7 @@ spec:
         # -- set the postgresql hostname to talk to
         # if unset and .Values.postgresql.enabled == true, will generate the default
         # @default -- `{{ .Release.Name }}-postgresql`
-        host: "postgresql-system.postgresql.svc.cluster.local"
+        host: "postgresql.postgresql-system.svc.cluster.local"
         # -- postgresql Database name
         # @default -- `authentik`
         name: "authentik"
