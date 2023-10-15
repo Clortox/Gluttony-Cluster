@@ -9,7 +9,7 @@ spec:
     storage: 1000Gi
   accessModes:
     - ReadWriteMany
-  local:
+  hostPath:
     path: /Main/Black Hole
   nodeAffinity:
     required:
