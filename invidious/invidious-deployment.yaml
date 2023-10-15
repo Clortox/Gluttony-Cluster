@@ -35,7 +35,7 @@ spec:
               dbname: invidious
               user: invidious
               password: $(INVIDIOUS_DB_PASSWORD)
-              host: postgresql-system.postgresql.svc.cluster.local
+              host: postgresql.postgresql-system.svc.cluster.local
               port: 5432
             check_tables: true
             hmac_key: "$(INVIDIOUS_HMAC_KEY)"
