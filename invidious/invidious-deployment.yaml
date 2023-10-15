@@ -32,7 +32,7 @@ spec:
         - name: INVIDIOUS_CONFIG
           value: |
             db:
-              dbname: invidious
+              dbname: Invidious
               user: invidious
               password: $(INVIDIOUS_DB_PASSWORD)
               host: postgresql.postgresql-system.svc.cluster.local
