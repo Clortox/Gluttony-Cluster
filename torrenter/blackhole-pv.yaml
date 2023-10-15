@@ -7,10 +7,8 @@ spec:
   storageClassName: local-storage
   capacity:
     storage: 1000Gi
-  volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
   local:
     path: /Main/Black Hole
   nodeAffinity:
