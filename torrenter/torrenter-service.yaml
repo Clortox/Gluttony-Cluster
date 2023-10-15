@@ -6,18 +6,14 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  # Prowlarr
   - port: 9696
     targetPort: 9696
-  # Deluge
+
   - port: 8112
     targetPort: 8112
   - port: 6881 
     targetPort: 6881
-  # Sonarr
-  # Radarr
-  # Lidarr
-  # Bazarr
+
   selector:
     app: torrenter-apps 
 
