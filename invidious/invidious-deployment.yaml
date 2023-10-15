@@ -44,18 +44,12 @@ spec:
             channel_refresh_interval: 15m
             feed_threads: 2
             banner: "Lol. Lmao even."
-            port: 3000
             default_user_preferences:
               default_home: "Subscriptions"
               quality: dash
               save_player_pos: true
+            port: 3000
+              #external_port: 443
+              #domain: watch.clortox.com
         ports:
         - containerPort: 3000
-        livenessProbe:
-          httpGet:
-            path: /api/v1/comments/jNQXAC9IVRw
-            port: 3000
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          timeoutSeconds: 5
-          failureThreshold: 2
