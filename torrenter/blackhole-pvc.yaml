@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: blackhole-pvc
+  namespace: torrent-ns
+spec:
+  storageClassName: local-storage
+  volumeName: blackhole-pv
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Gi
+
