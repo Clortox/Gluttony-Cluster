@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invidious
+  namespace: invidious-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invidious
+  template:
+    metadata:
+      labels:
+        app: invidious
+    spec:
+      containers:
+      - name: invidious
+        image: quay.io/invidious/invidious:latest
+        env:
+        - name: INVIDIOUS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: invidious-secret
+              key: invidous-postgres-password
+        - name: INVIDIOUS_HMAC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: invidious-secret
+              key: hmac 
+        - name: INVIDIOUS_CONFIG
+          value: |
+            db:
+              dbname: invidious
+              user: invidious
+              password: $(INVIDIOUS_DB_PASSWORD)
+              host: postgresql-system.postgresql.svc.cluster.local
+              port: 5432
+            check_tables: true
+            hmac_key: "$(INVIDIOUS_HMAC_KEY)"
+            pool_size: 100
+            statistics_enabled: true
+            admins: ["tyler"]
+            channel_threads: 2
+            channel_refresh_interval: 15m
+            feed_threads: 2
+            banner: "Lol. Lmao even."
+            default_user_preferences:
+              default_home: "Subscriptions"
+              quality: dash
+              save_player_pos: true
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /api/v1/comments/jNQXAC9IVRw
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 2
