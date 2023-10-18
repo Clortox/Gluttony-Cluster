@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: /Main/Black hole
+    path: /Main/Black Hole
   nodeAffinity:
     required:
       nodeSelectorTerms:
