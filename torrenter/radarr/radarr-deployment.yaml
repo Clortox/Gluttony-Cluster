@@ -24,13 +24,6 @@ spec:
                 operator: In
                 values:
                 - gluttony
-      initContainers:
-      - name: volume-permission
-        image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /config"]
-        volumes:
-          - mountPath: /config
-            name: radarr-config
       containers:
       - name: radarr 
         image: lscr.io/linuxserver/radarr:latest
