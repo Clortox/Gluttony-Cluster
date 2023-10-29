@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: wait-and-die
-        images: apline:latest
+        image: apline:latest
         command: ["/bin/sh", "-c"]
         args: ["sleep 86400; exit 0"]
       - name: invidious
