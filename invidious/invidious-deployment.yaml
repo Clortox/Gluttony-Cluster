@@ -14,6 +14,10 @@ spec:
         app: invidious
     spec:
       containers:
+      - name: wait-and-die
+        images: apline:latest
+        command: ["/bin/sh", "-c"]
+        args: ["sleep 86400; exit 0"]
       - name: invidious
         image: quay.io/invidious/invidious:latest
         env:
