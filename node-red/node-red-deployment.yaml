@@ -5,6 +5,8 @@ metadata:
   namespace: node-red-ns
 spec:
   replicas: 1
+  securityContext:
+    fsGroup: 1000
   selector:
     matchLabels:
       app: node-red 
@@ -12,19 +14,17 @@ spec:
     metadata:
       labels:
         app: node-red 
-  securityContext:
-    fsGroup: 1000
-  spec:
-    containers:
-    - name: freshrss
-      image: nodered/node-red
-      ports:
-      - containerPort: 1880
-      volumeMounts:
-      - name: node-red-data
-        mountPath: /data
-    volumes:
-    - name: node-red-data 
-      persistentVolumeClaim:
-        claimName: node-red-pvc
+    spec:
+      containers:
+      - name: freshrss
+        image: nodered/node-red
+        ports:
+        - containerPort: 1880
+        volumeMounts:
+        - name: node-red-data
+          mountPath: /data
+      volumes:
+      - name: node-red-data 
+        persistentVolumeClaim:
+          claimName: node-red-pvc
 
