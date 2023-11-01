@@ -12,17 +12,19 @@ spec:
     metadata:
       labels:
         app: node-red 
-    spec:
-      containers:
-      - name: freshrss
-        image: nodered/node-red
-        ports:
-        - containerPort: 1880
-        volumeMounts:
-        - name: node-red-data
-          mountPath: /data
-      volumes:
-      - name: node-red-data 
-        persistentVolumeClaim:
-          claimName: node-red-pvc
+  securityContext:
+    fsGroup: 1000
+  spec:
+    containers:
+    - name: freshrss
+      image: nodered/node-red
+      ports:
+      - containerPort: 1880
+      volumeMounts:
+      - name: node-red-data
+        mountPath: /data
+    volumes:
+    - name: node-red-data 
+      persistentVolumeClaim:
+        claimName: node-red-pvc
 
