@@ -23,8 +23,14 @@ spec:
         volumeMounts:
         - name: node-red-data
           mountPath: /data
+        - name: settings-file
+          mountPath: /data/settings.js
+          subPath: settings.js
       volumes:
       - name: node-red-data 
         persistentVolumeClaim:
           claimName: node-red-pvc
+      - name: settings-file
+        configMap:
+          name: nodered-settings
 
