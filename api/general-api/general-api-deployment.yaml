@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: general-api
+  namespace: api-ns
+  labels:
+    app: general-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-apps
+  template:
+    metadata:
+      labels:
+        app: torrenter-apps
+    spec:
+      containers:
+      - name: general-api
+        image: git.clortox.com/tyler/general-api:latest
+        env:
+        - name: ACCESS_KEY
+          value: "FOO"
+        - name: SECRET_KEY
+          value: "FOO"
+        ports:
+        - containerPort: 8000
+
