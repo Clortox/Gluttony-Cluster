@@ -22,12 +22,12 @@ spec:
         - name: ACCESS_KEY
           valueFrom:
             secretKeyRef:
-              name: general-api-secret
+              key: general-api-secret
               value: access-key
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: general-api-secret
+              key: general-api-secret
               value: secret-key
         - name: CONFIG
           value: "/config.yaml"
@@ -39,6 +39,6 @@ spec:
           name: general-api-config-map
           items:
           - key: config.yaml
-            path: /config.yaml
+            path: config.yaml
 
 
