@@ -13,16 +13,32 @@ spec:
   template:
     metadata:
       labels:
-        app: torrenter-apps
+        app: api-apps
     spec:
       containers:
       - name: general-api
         image: git.clortox.com/tyler/general-api:latest
         env:
         - name: ACCESS_KEY
-          value: "FOO"
+          valueFrom:
+            secretKeyRef:
+              name: general-api-secret
+              value: access-key
         - name: SECRET_KEY
-          value: "FOO"
+          valueFrom:
+            secretKeyRef:
+              name: general-api-secret
+              value: secret-key
+        - name: CONFIG
+          value: "/config.yaml"
         ports:
         - containerPort: 8000
+      volumes:
+      - name: config-volume
+        configMap:
+          name: general-api-config-map
+          items:
+          - key: config.yaml
+            path: /config.yaml
+
 
