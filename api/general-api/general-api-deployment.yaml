@@ -30,7 +30,7 @@ spec:
               name: general-api-secret
               key: secret-key
         - name: CONFIG
-          value: "/media/config.yaml"
+          value: "config.yaml"
         ports:
         - containerPort: 80
         volumesMounts:
