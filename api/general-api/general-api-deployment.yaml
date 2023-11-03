@@ -32,7 +32,7 @@ spec:
         - name: CONFIG
           value: "/config.yaml"
         ports:
-        - containerPort: 8000
+        - containerPort: 80
       volumes:
       - name: config-volume
         configMap:
