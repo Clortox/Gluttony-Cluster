@@ -22,13 +22,13 @@ spec:
         - name: ACCESS_KEY
           valueFrom:
             secretKeyRef:
-              key: general-api-secret
-              value: access-key
+              name: general-api-secret
+              key: access-key
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
-              key: general-api-secret
-              value: secret-key
+              name: general-api-secret
+              key: secret-key
         - name: CONFIG
           value: "/config.yaml"
         ports:
