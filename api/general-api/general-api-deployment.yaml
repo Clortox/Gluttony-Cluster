@@ -35,7 +35,7 @@ spec:
         - containerPort: 80
         volumesMounts:
         - name: config-volume
-          mountPath: /media
+          mountPath: /media/config.yaml
       volumes:
       - name: config-volume
         configMap:
