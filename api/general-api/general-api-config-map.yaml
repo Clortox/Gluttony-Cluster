@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: general-api-config-map
-  namespace: api-ns
+  namespace: api-ns 
 data:
   config.yaml: |
     images:
