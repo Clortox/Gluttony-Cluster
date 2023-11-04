@@ -1,0 +1,9 @@
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: general-api-repo
+  namespace: flux-system
+spec:
+  image: git.clortox.com/tyler/general-api
+  interval: 1m
+
