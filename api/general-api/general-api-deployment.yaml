@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: general-api
-        image: git.clortox.com/tyler/general-api
+        image: git.clortox.com/tyler/general-api:1.0.10
         imagePullPolicy: Always
         env:
         - name: ACCESS_KEY
