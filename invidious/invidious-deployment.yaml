@@ -17,7 +17,7 @@ spec:
       - name: wait-and-die
         image: alpine:latest
         command: ["/bin/sh", "-c"]
-        args: ["sleep 86400; exit 0"]
+        args: ["sleep 21600; exit 0"]
       - name: invidious
         image: quay.io/invidious/invidious:latest
         env:
