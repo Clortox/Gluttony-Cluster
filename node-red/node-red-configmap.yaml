@@ -24,7 +24,7 @@ data:
      *  - Runtime Settings
      *  - Editor Settings
      *  - Node Settings
-     *
+     * Test if this is working
      **/
 
     module.exports = {
