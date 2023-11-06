@@ -1,9 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - general-api-deployment.yaml
-images:
-  - name: git.clortox.com/tyler/general-api
-    newName: git.clortox.com/tyler/general-api
-    newTag: "1.0.10" # This tag will be updated by Flux.
-
