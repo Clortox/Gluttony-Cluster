@@ -18,9 +18,9 @@ spec:
         image: linuxserver/freshrss
         env:
         - name: OIDC_ENABLED
-          value: TRUE
+          value: "TRUE" 
         - name: OIDC_REMOTE_USER_CLAIM
-          value: preferred_username
+          value: "preferred_username"
         - name: OIDC_SCOPES
           value: "openid profile"
         - name: OIDC_X_FORWARDED_HEADERS
