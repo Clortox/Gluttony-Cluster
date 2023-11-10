@@ -18,7 +18,7 @@ spec:
         image: linuxserver/freshrss
         env:
         - name: OIDC_ENABLED
-          value: 1
+          value: "1"
         - name: OIDC_SCOPES
           value: "openid profile email"
         - name: OIDC_X_FORWARDED_HEADERS
