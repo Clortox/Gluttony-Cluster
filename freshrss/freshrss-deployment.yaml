@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: freshrss
-        image: linuxserver/freshrss
+        image: freshrss/freshrss
         env:
         - name: OIDC_ENABLED
           value: "1"
