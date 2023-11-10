@@ -16,6 +16,35 @@ spec:
       containers:
       - name: freshrss
         image: linuxserver/freshrss
+        env:
+        - name: OIDC_ENABLED
+          value: TRUE
+        - name: OIDC_REMOTE_USER_CLAIM
+          value: preferred_username
+        - name: OIDC_SCOPES
+          value: "openid profile"
+        - name: OIDC_X_FORWARDED_HEADERS
+          value: "X-Forwarded-Host X-Forwarded-Port X-Forwarded-Proto"
+        - name: OIDC_PROVIDER_METADATA_URL
+          valueFrom:
+            secretKeyRef:
+              name: freshrss-oidc
+              key: metadata-url
+        - name: OIDC_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: freshrss-oidc
+              key: client-id
+        - name: OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: freshrss-oidc
+              key: client-secret
+        - name: OIDC_CLIENT_CRYPTO_KEY
+          valueFrom:
+            secretKeyRef:
+              name: freshrss-oidc
+              key: crypto-key
         ports:
         - containerPort: 80
         volumeMounts:
