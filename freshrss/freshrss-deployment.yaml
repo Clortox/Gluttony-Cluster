@@ -29,22 +29,22 @@ spec:
           valueFrom:
             secretKeyRef:
               name: freshrss-oidc-config
-              key: metadata-url
+              key: OIDC_PROVIDER_METADATA_URL
         - name: OIDC_CLIENT_ID
           valueFrom:
             secretKeyRef:
               name: freshrss-oidc-config
-              key: client-id
+              key: OIDC_CLIENT_ID
         - name: OIDC_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
               name: freshrss-oidc-config
-              key: client-secret
+              key: OIDC_CLIENT_SECRET
         - name: OIDC_CLIENT_CRYPTO_KEY
           valueFrom:
             secretKeyRef:
               name: freshrss-oidc-config
-              key: crypto-key
+              key: OIDC_CLIENT_CRYPTO_KEY
         ports:
         - containerPort: 80
         volumeMounts:
