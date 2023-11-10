@@ -7,11 +7,11 @@ spec:
   selector:
     app: games 
   ports:
-    - name: Factorio
+    - name: factorio
       protocol: UDP
       port: 34197
       targetPort: 34197
-    - name: Factorio-TUI
+    - name: factorio-tui
       protocol: TCP
       port: 27015
       targetPort: 27015
