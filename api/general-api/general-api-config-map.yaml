@@ -11,4 +11,6 @@ data:
       endpoint: s3.clortox.com
       bucket: backgrounds
       secure: True
+    weather:
+      period: 15
 
