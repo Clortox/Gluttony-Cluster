@@ -21,6 +21,8 @@ spec:
         env:
         - name: FIREFLY_URL
           value: https://money.clortox.com
+        - name: ENABLE_UI
+          value: true
         - name: FIREFLY_PERSONAL_TOKEN
           valueFrom:
             secretKeyRef:
