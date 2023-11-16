@@ -7,11 +7,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: catagorize-ai
+      app: firefly-iii
   template:
     metadata:
       labels:
-        app: catagorize-ai 
+        app: firefly-iii 
     spec:
       containers:
       - name: catagorize-ai

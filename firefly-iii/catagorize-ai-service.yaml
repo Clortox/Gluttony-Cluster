@@ -5,7 +5,7 @@ metadata:
   namespace: firefly-ns
 spec:
   selector:
-    app: catagorize-ai 
+    app: firefly-iii
   ports:
     - protocol: TCP
       port: 3000
