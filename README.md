@@ -2,7 +2,8 @@
 
 A [Flux](https://fluxcd.io) repo describing my current at home kubernetes cluster.
 
-## Usage
+Find the actual, in production version of this repo on my [Gitea Repository](https://git.clortox.com/Infrastructure/Gluttony-Cluster). Here you will also find in use issues denoting things I plan to add to this repository.
 
-Built on k3s, however should not be coupled to the k3s implementation.
+Find the mirror of this repository on [Github](https://github.com/Clortox/Gluttony-Cluster).
+
 
