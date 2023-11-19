@@ -22,6 +22,31 @@ spec:
         - name: grafana
           image: grafana/grafana:latest
           imagePullPolicy: IfNotPresent
+          env:
+          - name: GF_AUTH_GENERIC_OAUTH_ENABLED
+            value: "true"
+          - name: GF_AUTH_GENERIC_OAUTH_NAME
+            value: "Authentik"
+          - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
+            value: "true"
+          - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+            valueFrom:
+              secretKeyRef: 
+                name: grafana-oauth
+                key: OAUTH_CLIENT_ID
+          - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: grafana-oauth
+                key: OAUTH_CLIENT_SECRET
+          - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
+            value: "https://auth.clortox.com/application/o/authorize/"
+          - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
+            value: "https://auth.clortox.com/application/o/token/"
+          - name: GF_AUTH_GENERIC_OAUTH_SCOPES
+            value: "user:email"
+          - name: GF_AUTH_GENERIC_OAUTH_API_URL
+            value: "https://auth.clortox.com/application/o/userinfo/"
           ports:
             - containerPort: 3000
               name: http-grafana
