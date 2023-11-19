@@ -14,6 +14,8 @@ spec:
       labels:
         app: grafana
     spec:
+      strategy:
+        type: Recreate
       securityContext:
         fsGroup: 472
         supplementalGroups:
