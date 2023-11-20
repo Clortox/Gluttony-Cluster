@@ -17,8 +17,8 @@ spec:
       - name: paperless-ngx
         image: ghcr.io/paperless-ngx/paperless-ngx:latest
         env:
-          #- name: PAPERLESS_URL
-          #  value: "https://paperless.clortox.com"
+        - name: PAPERLESS_URL
+          value: "https://paperless.clortox.com"
         - name: PAPERLESS_TIME_ZONE
           value: America/New_York
         - name: PAPERLESS_ADMIN_USER
