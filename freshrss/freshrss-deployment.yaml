@@ -17,6 +17,8 @@ spec:
       - name: freshrss
         image: freshrss/freshrss
         env:
+        - name: CRON_MIN
+          value: "*/10"
         - name: OIDC_ENABLED
           value: "1"
         - name: OIDC_SCOPES
