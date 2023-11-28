@@ -13,6 +13,8 @@ spec:
       labels:
         app: freshrss
     spec:
+      strategy:
+        type: Recreate
       containers:
       - name: freshrss
         image: freshrss/freshrss
