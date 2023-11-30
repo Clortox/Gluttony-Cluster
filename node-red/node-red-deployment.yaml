@@ -16,7 +16,7 @@ spec:
       securityContext:
         fsGroup: 1000
       containers:
-      - name: freshrss
+      - name: node-red
         image: nodered/node-red
         ports:
         - containerPort: 1880
