@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: activepieces
+  namespace: activepieces-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: activepieces
+  template:
+    metadata:
+      labels:
+        app: activepieces
+    spec:
+      containers:
+      - name: activepieces
+        image: activepieces/activepieces:0.14.3
+        ports:
+        - containerPort: 80
+        env:
+        - name: AP_DB_TYPE
+          value: POSTGRES
+        - name: AP_QUEUE_MODE
+          value: REDIS
+        - name: AP_POSTGRES_DATABASE
+          value: "activepieces"
+        - name: AP_POSTGRES_HOST
+          value: postgresql.postgresql-system.svc.cluster.local
+        - name: AP_POSTGRES_USERNAME
+          value: "activepieces"
+        - name: AP_POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: activepieces-secret
+              key: AP_POSTGRES_PASSWORD
+        - name: AP_POSTGRES_PORT
+          value: "5432"
+        - name: AP_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: activepieces-secret
+              key: AP_REDIS_URL
