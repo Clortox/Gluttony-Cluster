@@ -47,6 +47,11 @@ spec:
               name: activepieces-secret
               key: AP_JWT_SECRET
         - name: AP_FRONTEND_URL
-          value: "automate.clortox.com"
+          value: "https://automate.clortox.com"
         - name: AP_TELEMETRY_ENABLED
           value: "false"
+        - name: AP_ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: activepieces-secret
+              key: AP_ENCRYPTION_KEY
