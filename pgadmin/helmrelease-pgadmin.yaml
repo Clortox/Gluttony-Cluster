@@ -6,12 +6,12 @@ metadata:
 spec:
   chart:
     spec:
-      chart: pgadmin4 
+      chart: pgadmin4
       sourceRef:
         kind: HelmRepository
-        name: runix 
+        name: runix
         namespace: flux-system
-  interval: 15m0s 
+  interval: 15m0s
   timeout: 5m
   releaseName: pgadmin
   values:
@@ -214,7 +214,7 @@ spec:
       ## If true, pgAdmin4 will create/use a Persistent Volume Claim
       ## If false, use emptyDir
       ##
-      enabled: true 
+      enabled: true
 
       ## pgAdmin4 Persistent Volume Claim annotations
       ##
@@ -375,4 +375,3 @@ spec:
         runAsUser: 5051
         runAsGroup: 5051
         fsGroup: 5051
-

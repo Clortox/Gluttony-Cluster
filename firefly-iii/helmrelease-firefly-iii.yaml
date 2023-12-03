@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: firefly 
-  namespace: firefly-ns 
+  name: firefly
+  namespace: firefly-ns
 spec:
   chart:
     spec:
@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: firefly-iii
         namespace: flux-system
-  interval: 15m0s 
+  interval: 15m0s
   timeout: 5m
   releaseName: firefly-iii
   values:
@@ -131,7 +131,7 @@ spec:
       # runAsUser: 1000
 
     service:
-      type: LoadBalancer 
+      type: LoadBalancer
       port: 80
 
     ingress:

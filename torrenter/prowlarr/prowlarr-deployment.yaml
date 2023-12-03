@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: torrenter-apps 
+      app: torrenter-apps
   template:
     metadata:
       labels:
@@ -34,4 +34,3 @@ spec:
       - name: prowlarr-data
         persistentVolumeClaim:
           claimName: prowlarr-pvc
-

@@ -60,7 +60,7 @@ spec:
         - name: PAPERLESS_DBHOST
           value: postgresql.postgresql-system.svc.cluster.local
         - name: PAPERLESS_DBPORT
-          value: "5432" 
+          value: "5432"
         - name: PAPERLESS_DBUSER
           value: "paperless"
         - name: PAPERLESS_DBPASS

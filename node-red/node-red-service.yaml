@@ -5,10 +5,9 @@ metadata:
   namespace: node-red-ns
 spec:
   selector:
-    app: node-red 
+    app: node-red
   ports:
     - protocol: TCP
       port: 80
       targetPort: 1880
   type: LoadBalancer
-

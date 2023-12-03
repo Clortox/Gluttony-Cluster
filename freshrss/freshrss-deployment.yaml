@@ -56,4 +56,3 @@ spec:
       - name: freshrss-storage
         persistentVolumeClaim:
           claimName: freshrss-pvc
-

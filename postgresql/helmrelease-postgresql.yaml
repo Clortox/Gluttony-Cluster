@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-  interval: 15m0s 
+  interval: 15m0s
   timeout: 5m
   releaseName: postgresql
   values:
@@ -612,7 +612,7 @@ spec:
       service:
         ## @param primary.service.type Kubernetes Service type
         ##
-        type: ClusterIP 
+        type: ClusterIP
         ## @param primary.service.ports.postgresql PostgreSQL service port
         ##
         ports:

@@ -32,7 +32,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: invidious-secret
-              key: hmac 
+              key: hmac
         - name: INVIDIOUS_CONFIG
           value: |
             db:

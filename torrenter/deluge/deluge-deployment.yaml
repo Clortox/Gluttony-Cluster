@@ -49,4 +49,3 @@ spec:
       - name: downloads-volume
         persistentVolumeClaim:
           claimName: blackhole-pvc
-

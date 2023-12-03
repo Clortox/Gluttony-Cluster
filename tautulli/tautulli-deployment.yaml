@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tautulli 
+  name: tautulli
   namespace: tautulli-ns
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tautulli 
+      app: tautulli
   template:
     metadata:
       labels:
-        app: tautulli 
+        app: tautulli
     spec:
       securityContext:
         fsGroup: 1000
       initContainers:
       - name: init-chown
-        image: alpine 
+        image: alpine
         command: [ "sh", "-c", "chown -R 1000:1000 /mnt/data" ]
         volumeMounts:
         - name: tautulli-data
@@ -27,7 +27,7 @@ spec:
         image: ghcr.io/tautulli/tautulli
         env:
         - name: PUID
-          value: "1000" 
+          value: "1000"
         - name: PGID
           value: "1000"
         - name: TZ
@@ -38,7 +38,6 @@ spec:
         - name: tautulli-data
           mountPath: "/config"
       volumes:
-      - name: tautulli-data 
+      - name: tautulli-data
         persistentVolumeClaim:
           claimName: tautulli-pvc
-

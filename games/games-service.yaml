@@ -5,7 +5,7 @@ metadata:
   namespace: games-ns
 spec:
   selector:
-    app: games 
+    app: games
   ports:
     - name: factorio
       protocol: UDP
@@ -16,4 +16,3 @@ spec:
       port: 27015
       targetPort: 27015
   type: LoadBalancer
-

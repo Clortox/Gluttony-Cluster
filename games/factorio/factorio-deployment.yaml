@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: factorio 
+  name: factorio
   namespace: games-ns
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: games 
+      app: games
   template:
     metadata:
       labels:
-        app: games 
+        app: games
     spec:
       containers:
-      - name: factorio 
+      - name: factorio
         image: factoriotools/factorio:stable
         ports:
         - containerPort: 34179
@@ -26,4 +26,3 @@ spec:
       - name: factorio-save
         persistentVolumeClaim:
           claimName: factorio-pvc
-

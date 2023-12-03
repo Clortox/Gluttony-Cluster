@@ -10,16 +10,15 @@ spec:
     port: 9696
     targetPort: 9696
 
-  - name: deluge-ui 
+  - name: deluge-ui
     port: 8112
     targetPort: 8112
-  - name: deluge-p2p 
-    port: 6881 
+  - name: deluge-p2p
+    port: 6881
     targetPort: 6881
   - name: radarr
     port: 7878
     targetPort: 7878
 
   selector:
-    app: torrenter-apps 
-
+    app: torrenter-apps

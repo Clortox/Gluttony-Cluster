@@ -24,7 +24,7 @@ spec:
     ## routerServiceType to consider while creating Fission Router service.
     ## For minikube, set this to NodePort, elsewhere use LoadBalancer or ClusterIP.
     ##
-    routerServiceType: LoadBalancer 
+    routerServiceType: LoadBalancer
 
     ## repository represents base repository for images used in the chart.
     ## Keep it empty for using existing local image
@@ -46,7 +46,7 @@ spec:
     ##
     pullPolicy: IfNotPresent
 
-    ## imageppullsecrets 
+    ## imageppullsecrets
     imagePullSecrets: []
 
     ## priorityClassName represents the priority class name to use for Fission components.
@@ -95,7 +95,7 @@ spec:
     functionNamespace: ""
 
     ## Fission will watch the following namespaces along with the `defaultNamespace` for fission custom resources.
-    ## additionalFissionNamespaces: 
+    ## additionalFissionNamespaces:
     ## - namespace1
     ## - namespace2
     ## - namespace3
@@ -157,7 +157,7 @@ spec:
       ## This is applicable to Pool Manager executor type only.
       ##
       podReadyTimeout: 300s
-      
+
       ## Pod resources as:
       ##  resources:
       ##    limits:
@@ -330,7 +330,7 @@ spec:
         runAsGroup: 10001
 
     ## The builder manager watches the package & environments CRD changes and manages the builds of function source code.
-    ## 
+    ##
     buildermgr:
       ## Pod resources as:
       ##  resources:
@@ -381,10 +381,10 @@ spec:
         runAsNonRoot: true
         fsGroup: 10001
         runAsUser: 10001
-        runAsGroup: 10001 
+        runAsGroup: 10001
 
     ## webhook is the component that validates API calls.
-    ## It contains validation and mutation for functions, triggers, environments, Kubernetes event watches, etc. 
+    ## It contains validation and mutation for functions, triggers, environments, Kubernetes event watches, etc.
     ##
     webhook:
       ## Pod resources as:
@@ -563,7 +563,7 @@ spec:
       #  key: "value"
 
     # The following components expose Prometheus metrics and have podmonitors in this chart (disabled by default)
-    # 
+    #
     podMonitor:
       enabled: false
       ##namespace in which you want to deploy podmonitor
@@ -592,14 +592,14 @@ spec:
       ## Sample configuration for AWS s3 storage backend
       ##
       #s3:
-      #  bucketName: 
+      #  bucketName:
       #  subDir: <sub directory within a bucket>
       #  accessKeyId: <awsAccessKeyId>
-      #  secretAccessKey: 
+      #  secretAccessKey:
       #  region: <awsRegion>
       ## #For Minio and other s3 compatible storage systems set endPoint property
       #  endPoint: <s3StorageUrl>
-      
+
       ## A manually managed Persistent Volume Claim name
       ## Requires persistence.enabled: true
       ## If defined, PVC must be created manually before volume will be bound
@@ -776,7 +776,7 @@ spec:
       ## in seconds
       ## default '120'
       ##
-      jwtExpiryTime: 
+      jwtExpiryTime:
       ## jwtIssuer is the issuer of JWT
       ## default 'fission'
       ##
@@ -881,7 +881,7 @@ spec:
       ## Setting it false by default so that integration tests pass
       ##
       enabled: false
-      
+
       ## Checkout PodSpec in https://fission.io/docs/reference/crd-reference/#runtime
       ##
       podSpec:
@@ -923,5 +923,3 @@ spec:
       dashboards:
         ## Disabled by default. switch to true to deploy them
         enable: false
-
-

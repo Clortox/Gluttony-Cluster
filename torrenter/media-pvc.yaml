@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: media-pvc
-  namespace: torrent-ns 
+  namespace: torrent-ns
 spec:
   volumeName: media-pv
   storageClassName: local-storage

@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: authentik
         namespace: flux-system
-  interval: 15m0s 
+  interval: 15m0s
   timeout: 5m
   releaseName: authentik
   values:
@@ -39,7 +39,7 @@ spec:
     image:
       repository: ghcr.io/goauthentik/server
       tag: 2023.8.3
-        #tag: latest 
+        #tag: latest
       # -- optional container image digest
       digest: ""
       pullPolicy: IfNotPresent
@@ -141,7 +141,7 @@ spec:
     envValueFrom:
       AUTHENTIK_SECRET_KEY:
         secretKeyRef:
-          name: authentik-secret 
+          name: authentik-secret
           key: secret-key
       AUTHENTIK_POSTGRESQL__PASSWORD:
         secretKeyRef:
@@ -278,4 +278,3 @@ spec:
         enabled: false
       image:
         tag: 6.2.10-debian-11-r13
-

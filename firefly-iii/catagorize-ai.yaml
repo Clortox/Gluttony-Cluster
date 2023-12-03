@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        app: firefly-iii 
+        app: firefly-iii
     spec:
       containers:
       - name: catagorize-ai
@@ -22,7 +22,7 @@ spec:
         - name: FIREFLY_URL
           value: https://money.clortox.com
         - name: ENABLE_UI
-          value: "true" 
+          value: "true"
         - name: FIREFLY_PERSONAL_TOKEN
           valueFrom:
             secretKeyRef:
@@ -33,6 +33,3 @@ spec:
             secretKeyRef:
               name: firefly-iii-ai
               key: OPENAI
-
-
-

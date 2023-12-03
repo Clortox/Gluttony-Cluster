@@ -33,7 +33,7 @@ spec:
             value: "true"
           - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
             valueFrom:
-              secretKeyRef: 
+              secretKeyRef:
                 name: grafana-oauth
                 key: OAUTH_CLIENT_ID
           - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET

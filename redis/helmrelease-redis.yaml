@@ -1,19 +1,19 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: redis 
+  name: redis
   namespace: redis-system
 spec:
   chart:
     spec:
-      chart: redis 
+      chart: redis
       sourceRef:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-  interval: 15m0s 
+  interval: 15m0s
   timeout: 5m
-  releaseName: redis 
+  releaseName: redis
   values:
     # Copyright VMware, Inc.
     # SPDX-License-Identifier: APACHE-2.0
@@ -133,7 +133,7 @@ spec:
 
     ## @param architecture Redis&reg; architecture. Allowed values: `standalone` or `replication`
     ##
-    architecture: standalone 
+    architecture: standalone
     ## Redis&reg; Authentication parameters
     ## ref: https://github.com/bitnami/containers/tree/main/bitnami/redis#setting-the-server-password-on-first-run
     ##
@@ -520,7 +520,7 @@ spec:
       service:
         ## @param master.service.type Redis&reg; master service type
         ##
-        type: ClusterIP 
+        type: ClusterIP
         ## @param master.service.ports.redis Redis&reg; master service port
         ##
         ports:

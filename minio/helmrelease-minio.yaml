@@ -9,9 +9,9 @@ spec:
       chart: minio
       sourceRef:
         kind: HelmRepository
-        name: minio 
+        name: minio
         namespace: flux-system
-  interval: 15m0s 
+  interval: 15m0s
   timeout: 5m
   releaseName: minio
   values:

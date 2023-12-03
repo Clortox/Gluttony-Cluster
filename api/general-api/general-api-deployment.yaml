@@ -44,5 +44,3 @@ spec:
           items:
           - key: config.yaml
             path: config.yaml
-
-
