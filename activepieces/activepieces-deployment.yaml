@@ -41,3 +41,12 @@ spec:
             secretKeyRef:
               name: activepieces-secret
               key: AP_REDIS_URL
+        - name: AP_JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: activepieces-secret
+              key: AP_JWT_SECRET
+        - name: AP_FRONTEND_URL
+          value: "automate.clortox.com"
+        - name: AP_TELEMETRY_ENABLED
+          value: "false"
