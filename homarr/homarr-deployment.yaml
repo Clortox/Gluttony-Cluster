@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: homarr
-        image: ghcr.io/ajnart/homarr:v0.13.4
+        image: ghcr.io/ajnart/homarr:latest
         ports:
         - containerPort: 7575
         env:
@@ -29,6 +29,8 @@ spec:
           mountPath: /app/data/configs
         - name: homarr-icons
           mountPath: /app/public/icons
+        - name: homarr-data
+          mountPath: /data
       volumes:
       - name: homarr-config
         persistentVolumeClaim:
@@ -36,3 +38,6 @@ spec:
       - name: homarr-icons
         persistentVolumeClaim:
           claimName: homarr-icons-pvc
+      - name: homarr-data
+        persistentVolumeClaim:
+          claimName: homarr-data-pvc
