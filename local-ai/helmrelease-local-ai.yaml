@@ -14,7 +14,7 @@ spec:
   interval: 15m0s
   timeout: 5m
   releaseName: local-ai
-  values:
+  values: |
     replicaCount: 1
     deployment:
       image: quay.io/go-skynet/local-ai:latest
