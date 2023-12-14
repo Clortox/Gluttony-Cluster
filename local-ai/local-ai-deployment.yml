@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: local-ai
-        image: quay.io/go-skynet/local-ai:v2.0.0
+        image: quay.io/go-skynet/local-ai:latest
         args:
           - "--models-path"
           - "/models"
