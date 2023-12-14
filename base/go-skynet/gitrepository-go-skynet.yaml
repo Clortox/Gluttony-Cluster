@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: go-skynet
+  namespace: flux-system
+spec:
+  interval: 1h0s
+  ref:
+    branch: master
+  url: https://go-skynet.github.io/helm-charts/
