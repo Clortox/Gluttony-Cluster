@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-ai
+  namespace: local-ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: local-ai
+  template:
+    metadata:
+      labels:
+        app: local-ai
+    spec:
+      containers:
+      - name: local-ai
+        image: quay.io/go-skynet/local-ai:v2.0.0
+        args:
+          - "--models-path"
+          - "/models"
+          - "--context-size"
+          - "700"
+          - "--threads"
+          - "4"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: models-volume
+          mountPath: /models
+      volumes:
+      - name: models-volume
+        persistentVolumeClaim:
+          claimName: local-ai-models-pvc
