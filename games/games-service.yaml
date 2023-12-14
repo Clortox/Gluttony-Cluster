@@ -15,4 +15,7 @@ spec:
       protocol: TCP
       port: 27015
       targetPort: 27015
+    - name: minecraft
+      port: 25565
+      targetPort: 25565
   type: LoadBalancer
