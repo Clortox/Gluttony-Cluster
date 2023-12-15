@@ -44,13 +44,13 @@ spec:
         - name: MOTD
           value: "Lol. Lmao Even."
         - name: MAX_PLAYERS
-          value: 50
+          value: "50"
         - name: SPAWN_PROTECTION
-          value: 0
+          value: "0"
         - name: DIFFICULTY
           value: "hard"
         - name: OPS
-          value: Gritos_Internos
+          value: "Gritos_Internos"
         - name: ALLOW_FLIGHT
           value: "TRUE"
 
