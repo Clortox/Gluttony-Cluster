@@ -16,7 +16,10 @@ spec:
       containers:
       - name: minecraft
         image: itzg/minecraft-server
-          #env:
+        env:
+        - name: EULA
+          value: "TRUE"
+
         ports:
         - containerPort: 25565
           #readinessProbe:
