@@ -19,9 +19,14 @@ spec:
         env:
         - name: EULA
           value: "TRUE"
+        - name: ENABLE_RCON
+          value: "TRUE"
+        - name: RCON_PORT
+          value: 28016
 
         ports:
         - containerPort: 25565
+        - containerPort: 28016
           #readinessProbe:
           #  exec:
           #    command: [ "/usr/local/bin/mc-monitor", "status", "--host", "localhost" ]

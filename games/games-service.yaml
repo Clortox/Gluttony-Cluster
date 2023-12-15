@@ -18,4 +18,7 @@ spec:
     - name: minecraft
       port: 25565
       targetPort: 25565
+    - name: minecraft-rcon
+      port: 28016
+      targetPort: 28016
   type: LoadBalancer
