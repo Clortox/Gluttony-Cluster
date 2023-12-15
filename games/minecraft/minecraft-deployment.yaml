@@ -19,40 +19,40 @@ spec:
         env:
         - name: EULA
           value: "TRUE"
-        - name: ENABLE_RCON
-          value: "TRUE"
-        - name: RCON_PORT
-          value: 28016
-        - name: MEMORY
-          value: "8G"
-        - name: USE_AIKAR_FLAGS
-          value: "false"
-        - name: ENABLE_ROLLING_LOGS
-          value: "true"
-        - name: TZ
-          value: "America/New_York"
-
-        - name: VERSION
-          value: "1.12.2"
-            #- name: TYPE
-            #  value: "AUTO_CURSEFORGE"
-
-        - name: ICON
-          value: "https://s3.clortox.com/static-assets/img/jenny.png"
-        - name: OVERRIDE_ICON
-          value: "TRUE"
-        - name: MOTD
-          value: "Lol. Lmao Even."
-        - name: MAX_PLAYERS
-          value: "50"
-        - name: SPAWN_PROTECTION
-          value: "0"
-        - name: DIFFICULTY
-          value: "hard"
-        - name: OPS
-          value: "Gritos_Internos"
-        - name: ALLOW_FLIGHT
-          value: "TRUE"
+            #        - name: ENABLE_RCON
+            #          value: "TRUE"
+            #        - name: RCON_PORT
+            #          value: 28016
+            #        - name: MEMORY
+            #          value: "8G"
+            #        - name: USE_AIKAR_FLAGS
+            #          value: "false"
+            #        - name: ENABLE_ROLLING_LOGS
+            #          value: "true"
+            #        - name: TZ
+            #          value: "America/New_York"
+            #
+            #        - name: VERSION
+            #          value: "1.12.2"
+            #            #- name: TYPE
+            #            #  value: "AUTO_CURSEFORGE"
+            #
+            #        - name: ICON
+            #          value: "https://s3.clortox.com/static-assets/img/jenny.png"
+            #        - name: OVERRIDE_ICON
+            #          value: "TRUE"
+            #        - name: MOTD
+            #          value: "Lol. Lmao Even."
+            #        - name: MAX_PLAYERS
+            #          value: "50"
+            #        - name: SPAWN_PROTECTION
+            #          value: "0"
+            #        - name: DIFFICULTY
+            #          value: "hard"
+            #        - name: OPS
+            #          value: "Gritos_Internos"
+            #        - name: ALLOW_FLIGHT
+            #          value: "TRUE"
         ports:
         - containerPort: 25565
         - containerPort: 28016
