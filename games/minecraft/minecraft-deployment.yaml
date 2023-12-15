@@ -28,7 +28,7 @@ spec:
         - name: USE_AIKAR_FLAGS
           value: "false"
         - name: ENABLE_ROLLING_LOGS
-          value: "true"
+          value: "false"
         - name: TZ
           value: "America/New_York"
 
