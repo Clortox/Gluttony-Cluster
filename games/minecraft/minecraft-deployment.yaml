@@ -53,22 +53,9 @@ spec:
           value: "Gritos_Internos"
         - name: ALLOW_FLIGHT
           value: "TRUE"
-
         ports:
         - containerPort: 25565
         - containerPort: 28016
-          #readinessProbe:
-          #  exec:
-          #    command: [ "/usr/local/bin/mc-monitor", "status", "--host", "localhost" ]
-          #  # Give it i + p * f seconds to be ready, so 120 seconds
-          #  initialDelaySeconds: 20
-          #  periodSeconds: 5
-          #  failureThreshold: 20
-          #livenessProbe:
-          #  exec:
-          #    command: ["/usr/local/bin/mc-monitor", "status", "--host", "localhost"]
-          #  initialDelaySeconds: 120
-          #  periodSeconds: 60
         volumeMounts:
         - name: minecraft-data
           mountPath: /data
