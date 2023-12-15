@@ -34,8 +34,8 @@ spec:
 
         - name: VERSION
           value: "1.12.2"
-        - name: TYPE
-          value: "AUTO_CURSEFORGE"
+            #- name: TYPE
+            #  value: "AUTO_CURSEFORGE"
 
         - name: ICON
           value: "https://s3.clortox.com/static-assets/img/jenny.png"
