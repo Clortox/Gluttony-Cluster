@@ -19,18 +19,18 @@ spec:
         env:
         - name: EULA
           value: "TRUE"
-            #        - name: ENABLE_RCON
-            #          value: "TRUE"
-            #        - name: RCON_PORT
-            #          value: 28016
-            #        - name: MEMORY
-            #          value: "8G"
-            #        - name: USE_AIKAR_FLAGS
-            #          value: "false"
-            #        - name: ENABLE_ROLLING_LOGS
-            #          value: "true"
-            #        - name: TZ
-            #          value: "America/New_York"
+        - name: ENABLE_RCON
+          value: "TRUE"
+        - name: RCON_PORT
+          value: 28016
+        - name: MEMORY
+          value: "8G"
+        - name: USE_AIKAR_FLAGS
+          value: "false"
+        - name: ENABLE_ROLLING_LOGS
+          value: "true"
+        - name: TZ
+          value: "America/New_York"
             #
             #        - name: VERSION
             #          value: "1.12.2"
