@@ -50,7 +50,7 @@ spec:
         - name: VERSION
           value: "1.12.2"
         - name: TYPE
-          value: "CURSEFORGE"
+          value: "FTBA"
         - name: CF_SERVER_MOD
           value: "/modpacks/modpack.zip"
         - name: USE_MODPACK_START_SCRIPT
