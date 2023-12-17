@@ -30,7 +30,7 @@ spec:
       #    wget -O /modpacks/modpack.zip "$MODPACK_URL"
       containers:
       - name: minecraft
-        image: itzg/minecraft-server
+        image: itzg/minecraft-server:java8-jdk
         env:
         - name: EULA
           value: "TRUE"
