@@ -55,8 +55,8 @@ spec:
           value: "/modpacks/modpack.zip"
             #- name: USE_MODPACK_START_SCRIPT
             #  value: "false"
-        - name: FTB_LEGACYJAVAFIXER
-          value: "true"
+            #- name: FTB_LEGACYJAVAFIXER
+            #  value: "true"
 
         - name: ICON
           value: "https://s3.clortox.com/minecraft-modpacks/server-icon.png"
