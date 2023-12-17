@@ -13,6 +13,21 @@ spec:
       labels:
         app: games
     spec:
+      initContainers:
+      - name: modpack-downloader
+        image: alpine:latest
+        volumeMounts:
+        - name: minecraft-modpacks
+          mountPath: /modpacks
+        env:
+        - name: MODPACK_URL
+          value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - |
+          rm -rf /modpacks/*
+          wget -O /modpacks/modpack.zip "$MODPACK_URL"
       containers:
       - name: minecraft
         image: itzg/minecraft-server
@@ -34,11 +49,13 @@ spec:
 
         - name: VERSION
           value: "1.12.2"
-            #- name: TYPE
-            #  value: "AUTO_CURSEFORGE"
+        - name: TYPE
+          value: "CURSEFORGE"
+        - name: CF_SERVER_MOD
+          value: "/modpacks/modpack.zip"
 
         - name: ICON
-          value: "https://s3.clortox.com/static-assets/img/jenny.png"
+          value: "https://s3.clortox.com/minecraft-modpacks/server-icon.png"
         - name: OVERRIDE_ICON
           value: "TRUE"
         - name: MOTD
@@ -59,7 +76,11 @@ spec:
         volumeMounts:
         - name: minecraft-data
           mountPath: /data
+        - name: minecraft-modpacks
+          mountPath: /modpacks
       volumes:
       - name: minecraft-data
         persistentVolumeClaim:
           claimName: minecraft-data-pvc
+      - name: minecraft-modpacks
+        emptyDir: {}
