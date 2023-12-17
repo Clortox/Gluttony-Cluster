@@ -53,6 +53,8 @@ spec:
           value: "CURSEFORGE"
         - name: CF_SERVER_MOD
           value: "/modpacks/modpack.zip"
+        - name: USE_MODPACK_START_SCRIPT
+          value: "false"
 
         - name: ICON
           value: "https://s3.clortox.com/minecraft-modpacks/server-icon.png"
