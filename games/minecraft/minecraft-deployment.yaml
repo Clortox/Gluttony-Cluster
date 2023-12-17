@@ -51,10 +51,10 @@ spec:
           value: "1.12.2"
         - name: TYPE
           value: "CURSEFORGE"
-        - name: GENERIC_PACK
+        - name: CF_SERVER_MOD
           value: "/modpacks/modpack.zip"
-            #- name: USE_MODPACK_START_SCRIPT
-            #  value: "false"
+        - name: USE_MODPACK_START_SCRIPT
+          value: "false"
         - name: FTB_LEGACYJAVAFIXER
           value: "true"
 
