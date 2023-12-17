@@ -51,7 +51,7 @@ spec:
           value: "1.12.2"
         - name: TYPE
           value: "CURSEFORGE"
-        - name: CF_SERVER_MOD
+        - name: GENERIC_PACK
           value: "/modpacks/modpack.zip"
             #- name: USE_MODPACK_START_SCRIPT
             #  value: "false"
