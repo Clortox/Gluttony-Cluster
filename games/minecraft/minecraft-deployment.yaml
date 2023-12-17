@@ -49,14 +49,14 @@ spec:
 
         - name: VERSION
           value: "1.12.2"
-            #- name: GENERIC_PACK
-            #  value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
+        - name: MODPACK
+          value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
         - name: REMOVE_OLD_MODS
           value: "TRUE"
-        - name: TYPE
-          value: "CURSEFORGE"
-        - name: CF_SERVER_MOD
-          value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
+            #- name: TYPE
+            #  value: "CURSEFORGE"
+            #- name: CF_SERVER_MOD
+            #  value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
 
             #- name: USE_MODPACK_START_SCRIPT
             #  value: "true"
