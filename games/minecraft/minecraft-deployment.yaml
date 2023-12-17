@@ -13,22 +13,22 @@ spec:
       labels:
         app: games
     spec:
-      initContainers:
-      - name: modpack-downloader
-        image: alpine:latest
-        volumeMounts:
-        - name: minecraft-modpacks
-          mountPath: /modpacks
-        env:
-        - name: MODPACK_URL
-          value: "https://s3.clortox.com/minecraft-modpacks/cf-modpack-latest.zip"
-          #value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
-        command: ["/bin/sh"]
-        args:
-        - "-c"
-        - |
-          rm -rf /modpacks/*
-          wget -O /modpacks/modpack.zip "$MODPACK_URL"
+      #initContainers:
+      #- name: modpack-downloader
+      #  image: alpine:latest
+      #  volumeMounts:
+      #  - name: minecraft-modpacks
+      #    mountPath: /modpacks
+      #  env:
+      #  - name: MODPACK_URL
+      #    #value: "https://s3.clortox.com/minecraft-modpacks/cf-modpack-latest.zip"
+      #    value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
+      #  command: ["/bin/sh"]
+      #  args:
+      #  - "-c"
+      #  - |
+      #    rm -rf /modpacks/*
+      #    wget -O /modpacks/modpack.zip "$MODPACK_URL"
       containers:
       - name: minecraft
         image: itzg/minecraft-server:java8-jdk
@@ -54,16 +54,16 @@ spec:
           value: "TRUE"
 
         # Proper curseforge pack
-        - name: TYPE
-          value: "CURSEFORGE"
-        - name: CF_SERVER_MOD
-          value: "/modpacks/modpack.zip"
+        #- name: TYPE
+        #  value: "CURSEFORGE"
+        #- name: CF_SERVER_MOD
+        #  value: "/modpacks/modpack.zip"
 
         # Generic Forge configuration
-            #- name: TYPE
-            #  value: "FORGE"
-            #- name: MODPACK
-            #  value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
+        - name: TYPE
+          value: "FORGE"
+        - name: MODPACK
+          value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
             #- name: CUSTOM_SERVER_PROPERTIES
             #  value: |
             #    level-type=EarthCubic
