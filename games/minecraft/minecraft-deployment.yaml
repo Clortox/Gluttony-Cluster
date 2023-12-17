@@ -55,7 +55,7 @@ spec:
           value: "/modpacks/modpack.zip"
 
         - name: USE_MODPACK_START_SCRIPT
-          value: "false"
+          value: "true"
         - name: FTB_LEGACYJAVAFIXER
           value: "true"
 
