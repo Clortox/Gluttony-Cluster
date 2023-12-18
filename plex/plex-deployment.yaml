@@ -15,6 +15,8 @@ spec:
       labels:
         app: plex
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: gluttony
       containers:
       - name: plex
         image: plexinc/pms-docker:public
