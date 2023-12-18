@@ -95,6 +95,16 @@ spec:
           mountPath: /data
         - name: minecraft-modpacks
           mountPath: /modpacks
+
+        # Sidecar providing access to upload/view/download raw media files
+      - name: filebrowswer
+        image: filebrowser/filebrowser:latest
+        volumeMounts:
+        - name: minecraft-data
+          mountPath: /srv
+        ports:
+        - containerPort: 80
+
       volumes:
       - name: minecraft-data
         persistentVolumeClaim:

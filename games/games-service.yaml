@@ -21,4 +21,7 @@ spec:
     - name: minecraft-rcon
       port: 28016
       targetPort: 28016
+    - name: minecraft-files
+      port: 80
+      targetPort: 80
   type: LoadBalancer
