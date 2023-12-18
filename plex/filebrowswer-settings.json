@@ -1,0 +1,11 @@
+{
+  "port": 80,
+  "baseURL": "https://plex.files.clortox.com",
+  "address": "",
+  "log": "stdout",
+  "database": "/database/filebrowser.db",
+  "branding": {
+    "name": "Plex file portal"
+  },
+  "root": "/srv"
+}
