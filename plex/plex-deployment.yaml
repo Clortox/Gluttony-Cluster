@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex-bundle
+  namespace: plex-ns
+  annotations:
+    force-recreate: true
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+      - name: plex
+        image: plexinc/pms-docker:public
+        env:
+        - name: TZ
+          value: EST
+        ports:
+        - containerPort: 32400
+        - containerPort: 8234
+        - containerPort: 32469
+        - containerPort: 1900
+        - containerPort: 32410
+        - containerPort: 32412
+        - containerPort: 32413
+        - containerPort: 32414
+        volumeMounts:
+        - name: plex-config
+          mountPath: /config
+        - name: plex-media
+          mountPath: /data
+
+        # Sidecar providing access to upload/view/download raw media files
+      - name: filebrowswer
+        image: filebrowswer/filebrowswer
+        volumeMounts:
+        - name: plex-media
+          mountPath: /srv
+        ports:
+        - containerPort: 8080
+
+      volumes:
+      - name: plex-config
+        persistentVolumeClaim:
+          claimName: plex-pvc-config
+      - name: plex-media
+        persistentVolumeClaim:
+          claimName: plex-pvc-media
