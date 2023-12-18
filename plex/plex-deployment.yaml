@@ -38,7 +38,7 @@ spec:
 
         # Sidecar providing access to upload/view/download raw media files
       - name: filebrowswer
-        image: filebrowswer/filebrowswer
+        image: filebrowser/filebrowser:latest
         volumeMounts:
         - name: plex-media
           mountPath: /srv
