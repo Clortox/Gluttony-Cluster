@@ -41,10 +41,10 @@ spec:
           mountPath: /config
         - name: plex-media
           mountPath: /data
-            #securityContext:
-            #  runAsUser: 1000
-            #  runAsGroup: 1000
-            #  fsGroup: 1000
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+          fsGroup: 1000
 
         # Sidecar providing access to upload/view/download raw media files
       - name: filebrowswer
