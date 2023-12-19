@@ -113,7 +113,7 @@ spec:
               name: filebrowser-secret
               key: DEFAULT-PASS
         - name: BRANDING_NAME
-          value: "Media Storage"
+          value: "Gluttony Minecraft Server Data"
         - name: AUTH_METHOD
           value: "json"
         - name: AUTH_HEADER
