@@ -98,7 +98,42 @@ spec:
 
         # Sidecar providing access to upload/view/download raw media files
       - name: filebrowswer
-        image: filebrowser/filebrowser:latest
+        image: git.clortox.com/infrastructure/filebrowser:v1.0.1
+        env:
+        - name: ADMIN_PASS
+          valueFrom:
+            secretKeyRef:
+              name: filebrowser-secret
+              key: ADMIN-PASS
+        - name: DEFAULT_USERNAME
+          value: "default"
+        - name: DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: filebrowser-secret
+              key: DEFAULT-PASS
+        - name: BRANDING_NAME
+          value: "Media Storage"
+        - name: AUTH_METHOD
+          value: "json"
+        - name: AUTH_HEADER
+          value: "X-My-Header"
+        - name: PERM_ADMIN
+          value: "false"
+        - name: PERM_EXECUTE
+          value: "false"
+        - name: PERM_CREATE
+          value: "true"
+        - name: PERM_RENAME
+          value: "true"
+        - name: PERM_MODIFY
+          value: "true"
+        - name: PERM_DELETE
+          value: "false"
+        - name: PERM_SHARE
+          value: "true"
+        - name: PERM_DOWNLOAD
+          value: "true"
         volumeMounts:
         - name: minecraft-data
           mountPath: /srv
