@@ -97,7 +97,7 @@ spec:
           mountPath: /modpacks
 
         # Sidecar providing access to upload/view/download raw media files
-      - name: filebrowswer
+      - name: filebrowser
         image: git.clortox.com/infrastructure/filebrowser:v1.0.1
         env:
         - name: ADMIN_PASS
