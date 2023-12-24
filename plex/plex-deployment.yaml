@@ -61,9 +61,9 @@ spec:
         - name: BRANDING_NAME
           value: "Media Storage"
         - name: AUTH_METHOD
-          value: "json"
+          value: "proxy"
         - name: AUTH_HEADER
-          value: "X-My-Header"
+          value: "X-Auth-User"
         - name: PERM_ADMIN
           value: "false"
         - name: PERM_EXECUTE
