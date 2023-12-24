@@ -98,6 +98,9 @@ spec:
 
         # Sidecar providing access to upload/view/download raw media files
       - name: filebrowser
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
         image: git.clortox.com/infrastructure/filebrowser:v1.0.1
         env:
         - name: ADMIN_PASS
