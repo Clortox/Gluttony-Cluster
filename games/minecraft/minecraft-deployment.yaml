@@ -26,6 +26,9 @@ spec:
           chown -R 1000:1000 /data
       containers:
       - name: minecraft
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
         image: itzg/minecraft-server:java8-jdk
         env:
         - name: EULA
