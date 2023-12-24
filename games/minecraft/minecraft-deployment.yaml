@@ -13,22 +13,17 @@ spec:
       labels:
         app: games
     spec:
-      #initContainers:
-      #- name: modpack-downloader
-      #  image: alpine:latest
-      #  volumeMounts:
-      #  - name: minecraft-modpacks
-      #    mountPath: /modpacks
-      #  env:
-      #  - name: MODPACK_URL
-      #    #value: "https://s3.clortox.com/minecraft-modpacks/cf-modpack-latest.zip"
-      #    value: "https://s3.clortox.com/minecraft-modpacks/modpack-latest.zip"
-      #  command: ["/bin/sh"]
-      #  args:
-      #  - "-c"
-      #  - |
-      #    rm -rf /modpacks/*
-      #    wget -O /modpacks/modpack.zip "$MODPACK_URL"
+      initContainers:
+      - name: modpack-downloader
+        image: alpine:latest
+        volumeMounts:
+        - name: minecraft-data
+          mountPath: /data
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - |
+          chown -R 1000:1000 /data
       containers:
       - name: minecraft
         image: itzg/minecraft-server:java8-jdk
