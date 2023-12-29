@@ -26,7 +26,7 @@ spec:
         - containerPort: 4533
         env:
         - name: ND_BASEURL
-          value: ""
+          value: "https://music.clortox.com"
         - name: ND_CACHEFOLDER
           value: "/cache"
         - name: ND_MUSICFOLDER
