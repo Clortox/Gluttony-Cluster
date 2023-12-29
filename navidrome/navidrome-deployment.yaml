@@ -47,6 +47,11 @@ spec:
           value: "https://general.api.clortox.com/images/background/today"
         - name: ND_UIWELCOMEMESSAGE
           value: "Lol. Lmao even"
+
+        - name: ND_REVERSEPROXYUSERHEADER
+          value: "X-authentik-username"
+        - name: ND_REVERSEPROXYWHITELIST
+          value: "192.168.1.100"
         volumeMounts:
         - name: data
           mountPath: "/data"
