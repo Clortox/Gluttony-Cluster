@@ -49,7 +49,7 @@ spec:
           value: "Lol. Lmao even"
 
         - name: ND_REVERSEPROXYUSERHEADER
-          value: "X-authentik-username"
+          value: "X-Authentik-Username"
         - name: ND_REVERSEPROXYWHITELIST
           value: "192.168.1.100/32"
         volumeMounts:
