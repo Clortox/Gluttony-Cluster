@@ -85,7 +85,7 @@ spec:
           claimName: paperless-ngx-consume-pvc
       - name: paperless-media
         persistentVolumeClaim:
-          claimName: paperless-ngx-export-pvc
+          claimName: paperless-ngx-media-pvc
       - name: paperless-export
         persistentVolumeClaim:
           claimName: paperless-ngx-export-pvc
