@@ -123,4 +123,7 @@ Clarify
 Define
 Enumerate
 Stabilize
+Upgrade
+Increment
+Append
 EOF
