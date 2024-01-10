@@ -70,3 +70,25 @@ spec:
               key: POSTGRES_PASS
         ports:
         - containerPort: 8000
+        volumeMounts:
+        - name: paperless-consume
+          mountPath: "/usr/src/paperless/consume"
+        - name: paperless-media
+          mountPath: "/usr/src/paperless/media"
+        - name: paperless-export
+          mountPath: "/usr/src/paperless/export"
+        - name: paperless-data
+          mountPath: "/usr/src/paperless/data"
+      volumes:
+      - name: paperless-consume
+        persistentVolumeClaim:
+          claimName: paperless-ngx-consume-pvc
+      - name: paperless-media
+        persistentVolumeClaim:
+          claimName: paperless-ngx-export-pvc
+      - name: paperless-export
+        persistentVolumeClaim:
+          claimName: paperless-ngx-export-pvc
+      - name: paperless-data
+        persistentVolumeClaim:
+          claimName: paperless-ngx-data-pvc
