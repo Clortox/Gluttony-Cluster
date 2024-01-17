@@ -20,7 +20,7 @@ spec:
     image:
       repository: "fireflyiii/core"
       pullPolicy: IfNotPresent
-      tag: latest
+      tag: version-6.1.6
 
     imagePullSecrets: []
     nameOverride: ""
