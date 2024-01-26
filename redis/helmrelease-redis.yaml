@@ -11,6 +11,7 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
+
   interval: 15m0s
   timeout: 5m
   releaseName: redis
