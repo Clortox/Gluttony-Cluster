@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: immich
-  namespace: postgresql-system
+  namespace: immich-ns
 spec:
   chart:
     spec:
