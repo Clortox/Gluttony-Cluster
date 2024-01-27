@@ -16,13 +16,7 @@ spec:
       containers:
       - name: immich-microservices
         image: ghcr.io/immich-app/immich-server:release
-        command: ["/bin/bash", "-c"]
-        args:
-          - >
-            apt-get update &&
-            apt-get install -y nfs-common &&
-            start.sh microservices
-          # args: ["start.sh", "microservices"]
+        args: ["start.sh", "microservices"]
         env:
         - name: UPLOAD_LOCATION
           value: /usr/src/app/upload
