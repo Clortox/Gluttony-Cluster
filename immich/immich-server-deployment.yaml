@@ -16,7 +16,13 @@ spec:
       containers:
       - name: immich-server
         image: ghcr.io/immich-app/immich-server:release
-        args: ["start.sh", "immich"]
+        command: ["/bin/bash", "-c"]
+        args:
+          - >
+            apt-get update &&
+            apt-get install -y nfs-common &&
+            start.sh immich
+            # args: ["start.sh", "immich"]
         env:
         - name: UPLOAD_LOCATION
           value: /usr/src/app/upload
