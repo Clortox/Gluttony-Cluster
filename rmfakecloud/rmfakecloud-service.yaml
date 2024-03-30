@@ -4,9 +4,13 @@ metadata:
   name: rmfakecloud-service
   namespace: rmfakecloud-ns
 spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 3000
   selector:
     app: rmfakecloud
+  type: LoadBalancer
+  ports:
+  - name: rmfakecloud
+    port: 3000
+    targetPort: 3000
+  - name: filebrowswer
+    port: 80
+    targetPort: 80
