@@ -17,11 +17,9 @@ spec:
       containers:
       - name: openllm-container
         image: ghcr.io/bentoml/openllm
-        args: ["start", "${MODEL_NAME}", "--backend", "vllm"]
-        env:
         # Set this to desired deployment model
-        - name: MODEL_NAME
-          value: "meta-llama/Llama-2-13b-hf"
+        args: ["start", "meta-llama/Llama-2-13b-hf", "--backend", "vllm"]
+        env:
         - name: TRUST_REMOVE_CODE
           value: "True"
         - name: OPENLLM_DO_NOT_TRACK
