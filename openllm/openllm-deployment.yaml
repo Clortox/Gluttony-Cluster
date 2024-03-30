@@ -13,6 +13,7 @@ spec:
       labels:
         app: openllm
     spec:
+      runtimeClassName: nvidia
       containers:
       - name: openllm-container
         image: ghcr.io/bentoml/openllm
