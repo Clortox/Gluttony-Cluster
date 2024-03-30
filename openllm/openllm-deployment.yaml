@@ -30,6 +30,6 @@ spec:
         - containerPort: 3000
         resources:
           limits:
-            nvidia.com/gpu: 2
+            nvidia.com/gpu: 1
       nodeSelector:
         kubernetes.io/os: linux
