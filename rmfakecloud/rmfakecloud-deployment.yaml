@@ -37,14 +37,14 @@ spec:
           valueFrom:
             secretKeyRef:
               name: filebrowser-secret
-              key: ADMIN-PASS
+              key: ADMIN_PASS
         - name: DEFAULT_USERNAME
           value: "default"
         - name: DEFAULT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: filebrowser-secret
-              key: DEFAULT-PASS
+              key: DEFAULT_PASS
         - name: BRANDING_NAME
           value: "Media Storage"
         - name: AUTH_METHOD
