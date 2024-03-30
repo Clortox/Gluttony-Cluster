@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openllm-deployment
+  namespace: openllm-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openllm
+  template:
+    metadata:
+      labels:
+        app: openllm
+    spec:
+      containers:
+      - name: openllm-container
+        image: ghcr.io/bentoml/openllm
+        command: ["start"]
+        args: ["${MODEL_NAME}", "--backend", "vllm"]
+        env:
+        # Set this to desired deployment model
+        - name: MODEL_NAME
+          value: "meta-llama/Llama-2-13b-hf"
+        - name: TRUST_REMOVE_CODE
+          value: "True"
+        - name: OPENLLM_DO_NOT_TRACK
+          value: "True"
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            nvidia.com/gpu: 2
+      nodeSelector:
+        kubernetes.io/os: linux
