@@ -18,7 +18,7 @@ spec:
       - name: openllm-container
         image: ghcr.io/bentoml/openllm
         # Set this to desired deployment model
-        args: ["start", "meta-llama/Llama-2-13b-hf", "--backend", "vllm"]
+        args: ["start", "HuggingFaceH4/zephyr-7b-beta", "--backend", "vllm"]
         env:
         - name: TRUST_REMOVE_CODE
           value: "True"
