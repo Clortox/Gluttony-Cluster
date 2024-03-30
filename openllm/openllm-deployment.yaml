@@ -17,8 +17,7 @@ spec:
       containers:
       - name: openllm-container
         image: ghcr.io/bentoml/openllm
-        command: ["start"]
-        args: ["${MODEL_NAME}", "--backend", "vllm"]
+        args: ["start", "${MODEL_NAME}", "--backend", "vllm"]
         env:
         # Set this to desired deployment model
         - name: MODEL_NAME
