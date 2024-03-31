@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-server
+  namespace: vllm-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-inference-server
+  template:
+    metadata:
+      labels:
+        app: vllm-inference-server
+    spec:
+      containers:
+        - name: vllm-inference-server
+          image: vllm/vllm-openai
+          imagePullPolicy: IfNotPresent
+
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+          env:
+            - name: HUGGING_FACE_HUB_TOKEN
+              value: ""
+            - name: TRANSFORMERS_CACHE
+              value: /.cache
+            - name: shm-size
+              value: 1g
+          command: ["watch", "/bin/ls"]
+                #command: ["python3", "-m", "vllm.entrypoints.openai.api_server"]
+                #args: ["--model=meta-llama/Llama-2-7b-hf",
+                #       "--gpu-memory-utilization=0.95",
+                #       "--disable-log-requests",
+                #       "--trust-remote-code",
+                #       "--port=8000",
+                #       "--tensor-parallel-size=1"]
+          ports:
+            - containerPort: 8000
+              name: http
+          securityContext:
+            runAsUser: 1000
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
+            - mountPath: /.cache
+              name: cache
+      volumes:
+       - name: cache
+         emptyDir: {}
+       - name: dshm
+         emptyDir:
+              medium: Memory
