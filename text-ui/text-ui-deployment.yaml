@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: text-gen
+  namespace: text-gen-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: text-generation-webui
+  template:
+    metadata:
+      labels:
+        app: text-generation-webui
+    spec:
+      containers:
+      - name: text-generation-webui
+        image: atinoda/text-generation-webui:default-nvidia
+        env:
+          - name: EXTRA_LAUNCH_ARGS
+            value: "--listen --verbose --api"
+        ports:
+          - containerPort: 7860
+          - containerPort: 5000 # Api port
+          - containerPort: 5005
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/characters
+            subPath: characters
+          - name: config-volume
+            mountPath: /app/loras
+            subPath: loras
+          - name: config-volume
+            mountPath: /app/models
+            subPath: models
+          - name: config-volume
+            mountPath: /app/presets
+            subPath: presets
+          - name: config-volume
+            mountPath: /app/prompts
+            subPath: prompts
+          - name: config-volume
+            mountPath: /app/training
+            subPath: training
+
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+      volumes:
+        - name: config-volume
+          persistentVolumeClaim:
+            claimName: text-gen-pvc
