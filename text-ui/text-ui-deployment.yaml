@@ -18,10 +18,10 @@ spec:
         image: atinoda/text-generation-webui:default-nvidia
         env:
           - name: EXTRA_LAUNCH_ARGS
-            value: "--listen --verbose"
+            value: "--listen --verbose --api"
         ports:
           - containerPort: 7860
-          - containerPort: 5000
+          - containerPort: 5000 # Api port
           - containerPort: 5005
         volumeMounts:
           - name: config-volume
