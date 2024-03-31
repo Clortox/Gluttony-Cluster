@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: grocy
-        image: lscr.io/linuxserver/grocy:latest
+        image: lscr.io/linuxserver/grocy:4.2.0
         ports:
         - containerPort: 80
         env:
