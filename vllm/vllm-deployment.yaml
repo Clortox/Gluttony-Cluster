@@ -28,7 +28,9 @@ spec:
               value: /.cache
             - name: shm-size
               value: 1g
-          command: ["watch", "/bin/ls"]
+          command: ["/bin/bash", "-c"]
+          args:
+            - while true; do sleep 2600; done
                 #command: ["python3", "-m", "vllm.entrypoints.openai.api_server"]
                 #args: ["--model=meta-llama/Llama-2-7b-hf",
                 #       "--gpu-memory-utilization=0.95",
