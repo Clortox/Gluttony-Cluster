@@ -131,7 +131,9 @@ spec:
     blueprints: []
 
     # -- see configuration options at https://goauthentik.io/docs/installation/configuration/
-    env: {}
+    env:
+      - name: AUTHENTIK_REDIS__DB
+        value: "1"
     # AUTHENTIK_VAR_NAME: VALUE
 
     envFrom: []
