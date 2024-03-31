@@ -33,7 +33,7 @@ spec:
                 #args:
                 #- while true; do sleep 2600; done
           command: ["python3", "-m", "vllm.entrypoints.openai.api_server"]
-          args: ["--model=meta-llama/Llama-2-7b-hf",
+          args: ["--model=mistralai/Mistral-7B-v0.1",
                  "--gpu-memory-utilization=0.95",
                  "--disable-log-requests",
                  "--trust-remote-code",
