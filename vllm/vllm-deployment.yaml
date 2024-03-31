@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: vllm-inference-server
-          image: vllm/vllm-openai
+          image: vllm/vllm-openai:v0.3.3
           imagePullPolicy: IfNotPresent
 
           resources:
@@ -28,16 +28,16 @@ spec:
               value: /.cache
             - name: shm-size
               value: 1g
-          command: ["/bin/bash", "-c"]
-          args:
-            - while true; do sleep 2600; done
-                #command: ["python3", "-m", "vllm.entrypoints.openai.api_server"]
-                #args: ["--model=meta-llama/Llama-2-7b-hf",
-                #       "--gpu-memory-utilization=0.95",
-                #       "--disable-log-requests",
-                #       "--trust-remote-code",
-                #       "--port=8000",
-                #       "--tensor-parallel-size=1"]
+                #command: ["/bin/bash", "-c"]
+                #args:
+                #- while true; do sleep 2600; done
+          command: ["python3", "-m", "vllm.entrypoints.openai.api_server"]
+          args: ["--model=meta-llama/Llama-2-7b-hf",
+                 "--gpu-memory-utilization=0.95",
+                 "--disable-log-requests",
+                 "--trust-remote-code",
+                 "--port=8000",
+                 "--tensor-parallel-size=1"]
           ports:
             - containerPort: 8000
               name: http
