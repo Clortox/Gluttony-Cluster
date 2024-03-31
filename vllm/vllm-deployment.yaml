@@ -21,7 +21,7 @@ spec:
 
           resources:
             limits:
-              nvidia.com/gpu: 1
+              nvidia.com/gpu: 2
           env:
             - name: HUGGING_FACE_HUB_TOKEN
               value: ""
@@ -38,6 +38,7 @@ spec:
                  "--disable-log-requests",
                  "--trust-remote-code",
                  "--port=8000",
+                 "--dtype=half",
                  "--tensor-parallel-size=1"]
           ports:
             - containerPort: 8000
