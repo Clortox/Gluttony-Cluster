@@ -39,7 +39,7 @@ spec:
                  "--trust-remote-code",
                  "--port=8000",
                  "--dtype=half",
-                 "--tensor-parallel-size=1"]
+                 "--tensor-parallel-size=2"]
           ports:
             - containerPort: 8000
               name: http
