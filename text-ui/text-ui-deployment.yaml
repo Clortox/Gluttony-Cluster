@@ -13,6 +13,7 @@ spec:
       labels:
         app: text-generation-webui
     spec:
+      runtimeClassName: nvidia
       containers:
       - name: text-generation-webui
         image: atinoda/text-generation-webui:default-nvidia
