@@ -25,7 +25,24 @@ spec:
           - containerPort: 5005
         volumeMounts:
           - name: config-volume
-            mountPath: /app
+            mountPath: /app/characters
+            subPath: characters
+          - name: config-volume
+            mountPath: /app/loras
+            subPath: loras
+          - name: config-volume
+            mountPath: /app/models
+            subPath: models
+          - name: config-volume
+            mountPath: /app/presets
+            subPath: presets
+          - name: config-volume
+            mountPath: /app/prompts
+            subPath: prompts
+          - name: config-volume
+            mountPath: /app/training
+            subPath: training
+
         resources:
           limits:
             nvidia.com/gpu: 1
