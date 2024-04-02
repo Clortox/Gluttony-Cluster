@@ -126,8 +126,9 @@ spec:
       redis:
         # -- set the redis hostname to talk to
         # @default -- `{{ .Release.Name }}-redis-master`
-        host: "redis-master.redis-system.svc.cluster.local"
-          #password: ""
+        #host: "redis-master.redis-system.svc.cluster.local"
+        host: "{{ .Release.Name }}-redis-master"
+        password: ""
 
     # -- List of config maps to mount blueprints from. Only keys in the
     # configmap ending with ".yaml" wil be discovered and applied
@@ -277,7 +278,7 @@ spec:
         tag: 15.4.0-debian-11-r0
     redis:
       # -- enable the bundled bitnami redis chart
-      enabled: false
+      enabled: true
       architecture: standalone
       auth:
         enabled: false
