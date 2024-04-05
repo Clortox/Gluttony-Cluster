@@ -14,15 +14,15 @@ spec:
         app: localai
     spec:
       runtimeClassName: nvidia
-      resources:
-        limits:
-          nvidia.com/gpu: 2
       containers:
       - name: localai
         image: quay.io/go-skynet/local-ai:latest-aio-gpu-nvidia-cuda-12
         ports:
         - containerPort: 80
-        env:
+          #env:
+        resources:
+          limits:
+            nvidia.com/gpu: 3
         volumeMounts:
         - mountPath: "/models"
           name: models
