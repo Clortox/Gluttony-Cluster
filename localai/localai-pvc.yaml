@@ -5,7 +5,7 @@ metadata:
   namespace: localai-ns
 spec:
   accessModes:
-    - ReadWritemany
+    - ReadWriteMany
   resources:
     requests:
       storage: 20Gi
