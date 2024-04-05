@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: localai-pvc
+  namespace: localai-ns
+spec:
+  accessModes:
+    - ReadWritemany
+  resources:
+    requests:
+      storage: 20Gi
