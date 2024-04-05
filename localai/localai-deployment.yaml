@@ -18,7 +18,7 @@ spec:
       - name: localai
         image: quay.io/go-skynet/local-ai:latest-aio-gpu-nvidia-cuda-12
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           #env:
         resources:
           limits:
