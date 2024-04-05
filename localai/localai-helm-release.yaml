@@ -8,7 +8,7 @@ spec:
     spec:
       chart: local-ai
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: go-skynet
         namespace: flux-system
   interval: 15m0s
