@@ -24,7 +24,7 @@ spec:
           limits:
             nvidia.com/gpu: 3
         volumeMounts:
-        - mountPath: "/models"
+        - mountPath: "/build/models"
           name: models
       - name: filebrowser
         image: git.clortox.com/infrastructure/filebrowser:v1.0.1
