@@ -22,7 +22,7 @@ spec:
           #env:
         resources:
           limits:
-            nvidia.com/gpu: 3
+            nvidia.com/gpu: 2
         volumeMounts:
         - mountPath: "/build/models"
           name: models
