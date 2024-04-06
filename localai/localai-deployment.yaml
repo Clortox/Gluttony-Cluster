@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localai
+  namespace: localai-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: localai
+  template:
+    metadata:
+      labels:
+        app: localai
+    spec:
+      runtimeClassName: nvidia
+      containers:
+      - name: localai
+        image: quay.io/go-skynet/local-ai:v2.11.0-cublas-cuda12-ffmpeg
+        args: ["dolphin-2.7-mixtral-8x7b-GGUF"]
+        ports:
+        - containerPort: 8080
+          #env:
+        resources:
+          limits:
+            nvidia.com/gpu: 2
+        volumeMounts:
+        - mountPath: "/build/models"
+          name: models
+      - name: filebrowser
+        image: git.clortox.com/infrastructure/filebrowser:v1.0.1
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: models
+          mountPath: /srv
+        env:
+        - name: ADMIN_PASS
+          valueFrom:
+            secretKeyRef:
+              name: filebrowswer-secret
+              key: ADMIN_PASS
+        - name: DEFAULT_USERNAME
+          value: "default"
+        - name: DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: filebrowswer-secret
+              key: DEFAULT_PASS
+        - name: BRANDING_NAME
+          value: "Model Files"
+        - name: AUTH_METHOD
+          value: "json"
+        - name: AUTH_HEADER
+          value: "X-Auth-User"
+        - name: PERM_ADMIN
+          value: "false"
+        - name: PERM_EXECUTE
+          value: "true"
+        - name: PERM_CREATE
+          value: "true"
+        - name: PERM_RENAME
+          value: "true"
+        - name: PERM_MODIFY
+          value: "true"
+        - name: PERM_DELETE
+          value: "true"
+        - name: PERM_SHARE
+          value: "false"
+        - name: PERM_DOWNLOAD
+          value: "true"
+      volumes:
+      - name: models
+        persistentVolumeClaim:
+          claimName: localai-pvc
