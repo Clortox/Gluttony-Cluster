@@ -30,9 +30,6 @@ spec:
         image: git.clortox.com/infrastructure/filebrowser:v1.0.1
         ports:
         - containerPort: 80
-        securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
         volumeMounts:
         - name: models
           mountPath: /srv
