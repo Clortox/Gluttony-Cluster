@@ -26,6 +26,46 @@ spec:
         volumeMounts:
         - mountPath: "/models"
           name: models
+      - name: filebrowser
+        image: git.clortox.com/infrastructure/filebrowswer:v1.0.1
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+        env:
+        - name: ADMIN_PASS
+          valueFrom:
+            secretKeyRef:
+              name: filebrowswer-secret
+              key: ADMIN-PASS
+        - name: DEFAULT_USERNAME
+          value: "default"
+        - name: DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: filebrowswer-secret
+              key: DEFAULT-PASS
+        - name: BRANDING_NAME
+          value: "Model Files"
+        - name: AUTH_METHOD
+          value: "proxy"
+        - name: AUTH_HEADER
+          value: "X-Auth-User"
+        - name: PERM_ADMIN
+          value: "false"
+        - name: PERM_EXECUTE
+          value: "true"
+        - name: PERM_CREATE
+          value: "true"
+        - name: PERM_RENAME
+          value: "true"
+        - name: PERM_MODIFY
+          value: "true"
+        - name: PERM_DELETE
+          value: "true"
+        - name: PERM_SHARE
+          value: "false"
+        - name: PERM_DOWNLOAD
+          value: "true"
       volumes:
       - name: models
         persistentVolumeClaim:
