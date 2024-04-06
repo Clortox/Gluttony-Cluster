@@ -36,14 +36,14 @@ spec:
           valueFrom:
             secretKeyRef:
               name: filebrowswer-secret
-              key: ADMIN-PASS
+              key: ADMIN_PASS
         - name: DEFAULT_USERNAME
           value: "default"
         - name: DEFAULT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: filebrowswer-secret
-              key: DEFAULT-PASS
+              key: DEFAULT_PASS
         - name: BRANDING_NAME
           value: "Model Files"
         - name: AUTH_METHOD
