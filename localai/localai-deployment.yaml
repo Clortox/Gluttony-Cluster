@@ -27,7 +27,7 @@ spec:
         - mountPath: "/models"
           name: models
       - name: filebrowser
-        image: git.clortox.com/infrastructure/filebrowswer:v1.0.1
+        image: git.clortox.com/infrastructure/filebrowser:v1.0.1
         securityContext:
           runAsUser: 1000
           runAsGroup: 1000
