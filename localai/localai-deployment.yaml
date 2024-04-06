@@ -16,7 +16,7 @@ spec:
       runtimeClassName: nvidia
       containers:
       - name: localai
-        image: quay.io/go-skynet/local-ai:latest-aio-gpu-nvidia-cuda-12
+        image: quay.io/go-skynet/local-ai:v2.11.0-cublas-cuda12-ffmpeg
         ports:
         - containerPort: 8080
           #env:
