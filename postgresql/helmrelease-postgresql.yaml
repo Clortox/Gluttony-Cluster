@@ -115,7 +115,7 @@ spec:
     image:
       registry: git.clortox.com
       repository: infrastructure/gluttony-cluster-postgresql
-      tag: v1.1.0
+      tag: v1.2.0
       digest: ""
       ## Specify a imagePullPolicy
       ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
