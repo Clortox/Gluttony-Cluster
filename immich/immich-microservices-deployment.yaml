@@ -20,6 +20,8 @@ spec:
         env:
         - name: UPLOAD_LOCATION
           value: /usr/src/app/upload
+        - name: DB_VECTOR_EXTENSION
+          value: pgvector
         - name: DB_HOSTNAME
           value: postgresql.postgresql-system.svc.cluster.local
         - name: DB_USERNAME
