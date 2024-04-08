@@ -6,7 +6,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 3000
-    targetPort: 2283
+  - port: 80
+    targetPort: 3001
   selector:
     app: immich-server
