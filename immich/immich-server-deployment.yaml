@@ -45,7 +45,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: redis-immich-secret
-              value: REDIS_PASS
+              key: REDIS_PASS
         volumeMounts:
         - name: upload-volume
           mountPath: /usr/src/app/upload
