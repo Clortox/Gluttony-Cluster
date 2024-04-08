@@ -22,6 +22,8 @@ spec:
         env:
         - name: GALLERIEIS
           value: '[{"name":"model-gallery", "url":"github:go-skynet/model-gallery/index.yaml"}, {"url": "github:go-skynet/model-gallery/huggingface.yaml","name":"huggingface"}]'
+        - name: DEBUG
+          value: "true"
         resources:
           limits:
             nvidia.com/gpu: 2
