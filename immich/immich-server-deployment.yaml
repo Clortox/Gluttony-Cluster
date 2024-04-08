@@ -41,6 +41,11 @@ spec:
               key: database
         - name: REDIS_HOSTNAME
           value: redis-master.redis-system.svc.cluster.local
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-immich-secret
+              value: REDIS_PASS
         volumeMounts:
         - name: upload-volume
           mountPath: /usr/src/app/upload
