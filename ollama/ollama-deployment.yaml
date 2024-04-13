@@ -13,11 +13,15 @@ spec:
       labels:
         app: ollama
     spec:
+      runtimeClassName: nvidia
       containers:
       - name: ollama
         image: ollama/ollama
         ports:
         - containerPort: 11434
+        resources:
+          limits:
+            nvidia.com/gpu: 2
         volumeMounts:
         - name: ollama-volume
           mountPath: /root/.ollama
