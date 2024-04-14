@@ -17,6 +17,11 @@ spec:
       containers:
       - name: ollama
         image: ollama/ollama
+        env:
+        - name: OLLAMA_HOST
+          value: 0.0.0.0
+        - name: OLLAMA_MODELS
+          value: "/models"
         ports:
         - containerPort: 11434
         resources:
@@ -24,7 +29,7 @@ spec:
             nvidia.com/gpu: 2
         volumeMounts:
         - name: ollama-volume
-          mountPath: /root/.ollama
+          mountPath: "/my-models"
       volumes:
       - name: ollama-volume
         persistentVolumeClaim:
