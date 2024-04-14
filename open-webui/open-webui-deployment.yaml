@@ -24,7 +24,6 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /app/backend/data
-          readOnly: true
       volumes:
       - name: config
         persistentVolumeClaim:
