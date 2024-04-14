@@ -20,7 +20,7 @@ spec:
         - containerPort: 8080
         env:
           - name: OLLAMA_BASE_URL
-            value: "http://ollama.ollama-ns.svc.cluster.local:11434" # Assuming the internal service is named 'open-webui-service'
+            value: "http://ollama-service.ollama-ns.svc.cluster.local:11434" # Assuming the internal service is named 'open-webui-service'
         volumeMounts:
         - name: config
           mountPath: /app/backend/data
