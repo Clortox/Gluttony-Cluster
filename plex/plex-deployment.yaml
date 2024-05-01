@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: plex-bundle
+  name: plex
   namespace: plex-ns
   annotations:
     force-recreate: true
