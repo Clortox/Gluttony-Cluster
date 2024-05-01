@@ -19,7 +19,7 @@ spec:
         kubernetes.io/hostname: gluttony
       containers:
       - name: plex
-        image: lscr.io/linuxserver/plex:10.40.2
+        image: linuxserver/plex:1.40.2
         env:
         - name: TZ
           value: Etc/UTC
