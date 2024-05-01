@@ -4,10 +4,9 @@ metadata:
   name: plex-pvc-config
   namespace: plex-ns
 spec:
-  volumeName: plex-pv-config
-  storageClassName: local-storage
+  storageClassName: longhorn
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 200Gi
