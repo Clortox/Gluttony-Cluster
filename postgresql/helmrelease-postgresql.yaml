@@ -676,7 +676,7 @@ spec:
         enabled: true
         ## @param primary.persistence.existingClaim Name of an existing PVC to use
         ##
-        existingClaim: ""
+        existingClaim: "pvc-8fa3d624-72e0-4f6d-a095-c76c775beaff"
         ## @param primary.persistence.mountPath The path the volume will be mounted at
         ## Note: useful when using custom PostgreSQL images
         ##
