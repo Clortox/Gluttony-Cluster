@@ -703,8 +703,8 @@ spec:
       # See configuration options at https://goauthentik.io/docs/installation/configuration/
       # @default -- `[]` (See [values.yaml])
       env:
-        - name: AUTHENTIK_REDIS__DB
-          value: "1"
+      - name: AUTHENTIK_REDIS__DB
+        value: "1"
         # - name: AUTHENTIK_VAR_NAME
         #   value: VALUE
         # - name: AUTHENTIK_VAR_OTHER
