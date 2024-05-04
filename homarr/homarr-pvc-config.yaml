@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: freshrss-pvc
-  namespace: freshrss-ns
+  name: homarr-config-pvc
+  namespace: homarr-ns
 spec:
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
-      storage: 1Gi
+      storage: 512Mi
