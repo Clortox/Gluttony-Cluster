@@ -131,7 +131,9 @@ spec:
 
     # -- List of config maps to mount blueprints from. Only keys in the
     # configmap ending with ".yaml" wil be discovered and applied
-    blueprints: []
+    blueprints:
+      configMaps: []
+      secrets: []
 
     # -- see configuration options at https://goauthentik.io/docs/installation/configuration/
     env:
