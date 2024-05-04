@@ -120,15 +120,15 @@ spec:
       # See configuration options at https://goauthentik.io/docs/installation/configuration/
       # @default -- `[]` (See [values.yaml])
       env:
-        AUTHENTIK_SECRET_KEY:
+        - AUTHENTIK_SECRET_KEY:
           secretKeyRef:
             name: authentik-secret
             key: secret-key
-        AUTHENTIK_POSTGRESQL__PASSWORD:
+        - AUTHENTIK_POSTGRESQL__PASSWORD:
           secretKeyRef:
             name: authentik-secret
             key: postgres-password
-        AUTHENTIK_REDIS__PASSWORD:
+        - AUTHENTIK_REDIS__PASSWORD:
           secretKeyRef:
             name: authentik-secret
             key: redis-password
