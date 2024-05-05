@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grocy
+  namespace: grocy-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grocy
+  template:
+    metadata:
+      labels:
+        app: grocy
+    spec:
+      containers:
+      - name: grocy
+        image: lscr.io/linuxserver/grocy:4.2.0
+        ports:
+        - containerPort: 80
+        env:
+          #- name: GROCY_AUTH_CLASS
+          #  value: "Grocy/Middleware/ReverseProxyAuthMiddleware"
+          #- name: GROCY_REVERSE_PROXY_AUTH_HEADER
+          #  value: "X-authentik-name"
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Etc/UTC"
+        volumeMounts:
+        - mountPath: "/config"
+          name: grocy-config
+      volumes:
+      - name: grocy-config
+        persistentVolumeClaim:
+          claimName: grocy-pvc
