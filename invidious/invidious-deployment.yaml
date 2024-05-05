@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invidious
+  namespace: invidious-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invidious
+  template:
+    metadata:
+      labels:
+        app: invidious
+    spec:
+      containers:
+      - name: wait-and-die
+        image: alpine:latest
+        command: ["/bin/sh", "-c"]
+        args: ["sleep 21600; exit 0"]
+      - name: invidious
+        image: quay.io/invidious/invidious:2024.03.31-08390ac
+        env:
+        - name: INVIDIOUS_PORT
+          value: "3000"
+        - name: INVIDIOUS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: invidious-secret
+              key: invidious-postgres-password
+        - name: INVIDIOUS_HMAC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: invidious-secret
+              key: hmac
+        - name: INVIDIOUS_CONFIG
+          value: |
+            db:
+              dbname: Invidious
+              user: invidious
+              password: $(INVIDIOUS_DB_PASSWORD)
+              host: postgresql.postgresql-system.svc.cluster.local
+              port: 5432
+            check_tables: true
+            hmac_key: "$(INVIDIOUS_HMAC_KEY)"
+            pool_size: 100
+            statistics_enabled: true
+            admins: ["tyler"]
+            channel_threads: 2
+            channel_refresh_interval: 15m
+            feed_threads: 2
+            banner: "Lol. Lmao even."
+            default_user_preferences:
+              default_home: "Subscriptions"
+              quality: dash
+              save_player_pos: true
+            port: 3000
+              #external_port: 443
+              #domain: watch.clortox.com
+        ports:
+        - containerPort: 3000
