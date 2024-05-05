@@ -39,9 +39,9 @@ spec:
         - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
           value: "true"
         - name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
-          value: "HTTP_REMOTE_USER"
+          value: "HTTP_X_AUTHENTIK_USERNAME"
         - name: PAPERLESS_LOGOUT_REDIRECT_URL
-          value: ""
+          value: "https://auth.clortox.com/outpost.goauthentik.io/sign_out"
         - name: PAPERLESS_SECRET_KEY
           valueFrom:
             secretKeyRef:
