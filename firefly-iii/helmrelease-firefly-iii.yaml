@@ -30,7 +30,7 @@ spec:
       # -- If you set this to false, uploaded attachments are not stored persistently and will be lost with every restart of the pod
       enabled: true
       storageClassName: "longhorn"
-      accessModes: ReadWriteOnce
+      accessModes: ReadWriteMany
       storage: 20Gi
       # -- If you want to use an existing claim, set it here
       existingClaim: ""
