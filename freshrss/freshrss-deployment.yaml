@@ -22,7 +22,7 @@ spec:
         - name: CRON_MIN
           value: "*/10"
         - name: OIDC_ENABLED
-          value: "1"
+          value: "0"
         - name: OIDC_SCOPES
           value: "openid profile email"
         - name: OIDC_X_FORWARDED_HEADERS
