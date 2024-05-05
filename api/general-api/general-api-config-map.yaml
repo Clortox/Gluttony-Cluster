@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: general-api-config-map
+  namespace: api-ns
+data:
+  config.yaml: |
+    images:
+      access_key: ${ACCESS_KEY}
+      secret_key: ${SECRET_KEY}
+      endpoint: s3.clortox.com
+      bucket: backgrounds
+      secure: True
+    weather:
+      period: 15

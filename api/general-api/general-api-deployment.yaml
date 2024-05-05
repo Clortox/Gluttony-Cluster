@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: general-api
+  namespace: api-ns
+  labels:
+    app: general-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-apps
+  template:
+    metadata:
+      labels:
+        app: api-apps
+    spec:
+      containers:
+      - name: general-api
+        image: git.clortox.com/tyler/general-api:1.0.15
+        imagePullPolicy: Always
+        env:
+        - name: ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: general-api-secret
+              key: access-key
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: general-api-secret
+              key: secret-key
+        - name: CONFIG
+          value: "config.yaml"
+        ports:
+        - containerPort: 80
+        volumesMounts:
+        - name: config-volume
+          mountPath: /media/config.yaml
+      volumes:
+      - name: config-volume
+        configMap:
+          name: general-api-config-map
+          items:
+          - key: config.yaml
+            path: config.yaml
