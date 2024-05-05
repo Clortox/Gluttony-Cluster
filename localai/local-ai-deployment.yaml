@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-ai
+  namespace: local-ai-ns
+  labels:
+    app: local-ai
+spec:
+  selector:
+    matchLabels:
+      app: local-ai
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: local-ai
+      name: local-ai
+    spec:
+      containers:
+        - args:
+          - dolphin-2.5-mixtral-8x7b
+          env:
+          - name: DEBUG
+            value: "true"
+          name: local-ai
+          image: quay.io/go-skynet/local-ai:master-ffmpeg-core
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              nvidia.com/gpu: 2
+          volumeMounts:
+            - name: models-volume
+              mountPath: /build/models
+      volumes:
+        - name: models-volume
+          persistentVolumeClaim:
+            claimName: models-pvc
