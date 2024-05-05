@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx
+  namespace: paperless-ngx-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx
+    spec:
+      containers:
+      - name: paperless-ngx
+        image: ghcr.io/paperless-ngx/paperless-ngx:2.3.3
+        env:
+        - name: PAPERLESS_URL
+          value: "https://paperless.clortox.com"
+        - name: PAPERLESS_TIME_ZONE
+          value: America/New_York
+        - name: PAPERLESS_ADMIN_USER
+          valueFrom:
+            secretKeyRef:
+              name: paperless-config
+              key: ADMIN_NAME
+        - name: PAPERLESS_ADMIN_MAIL
+          valueFrom:
+            secretKeyRef:
+              name: paperless-config
+              key: ADMIN_EMAIL
+        - name: PAPERLESS_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: paperless-config
+              key: ADMIN_PASSWORD
+
+                #- name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
+                #  value: "true"
+                #- name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
+                #  value: "HTTP_REMOTE_USER"
+                #- name: PAPERLESS_LOGOUT_REDIRECT_URL
+                #  value: ""
+
+        - name: PAPERLESS_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: paperless-config
+              key: SECRET
+        # Secret because the URI contains the password
+        - name: PAPERLESS_REDIS
+          valueFrom:
+            secretKeyRef:
+              name: paperless-config
+              key: REDIS_URL
+        - name: PAPERLESS_DBENGINE
+          value: "postgresql"
+        - name: PAPERLESS_DBHOST
+          value: postgresql.postgresql-system.svc.cluster.local
+        - name: PAPERLESS_DBPORT
+          value: "5432"
+        - name: PAPERLESS_DBUSER
+          value: "paperless"
+        - name: PAPERLESS_DBPASS
+          valueFrom:
+            secretKeyRef:
+              name: paperless-config
+              key: POSTGRES_PASS
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: paperless-consume
+          mountPath: "/usr/src/paperless/consume"
+        - name: paperless-media
+          mountPath: "/usr/src/paperless/media"
+        - name: paperless-export
+          mountPath: "/usr/src/paperless/export"
+        - name: paperless-data
+          mountPath: "/usr/src/paperless/data"
+      volumes:
+      - name: paperless-consume
+        persistentVolumeClaim:
+          claimName: paperless-ngx-consume-pvc
+      - name: paperless-media
+        persistentVolumeClaim:
+          claimName: paperless-ngx-media-pvc
+      - name: paperless-export
+        persistentVolumeClaim:
+          claimName: paperless-ngx-export-pvc
+      - name: paperless-data
+        persistentVolumeClaim:
+          claimName: paperless-ngx-data-pvc
