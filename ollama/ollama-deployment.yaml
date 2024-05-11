@@ -29,7 +29,7 @@ spec:
             nvidia.com/gpu: 3
         volumeMounts:
         - name: ollama-volume
-          mountPath: "/root/.ollama"
+          mountPath: "/models"
       volumes:
       - name: ollama-volume
         persistentVolumeClaim:
