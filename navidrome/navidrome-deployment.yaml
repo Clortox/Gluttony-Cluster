@@ -52,16 +52,16 @@ spec:
           value: "X-Authentik-Username"
         - name: ND_REVERSEPROXYWHITELIST
           value: "0.0.0.0/0"
-        - name: ND_SPOTIFY_ID
-          valueFrom:
-            secretKeyRef:
-              name: spotify-creds
-              key: CLIENT_ID
-        - name: ND_SPOTIFY_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: spotify-creds
-              key: CLIENT_ID
+            #- name: ND_SPOTIFY_ID
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: spotify-creds
+            #      key: CLIENT_ID
+            #- name: ND_SPOTIFY_SECRET
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: spotify-creds
+            #      key: CLIENT_ID
         volumeMounts:
         - name: data
           mountPath: "/data"
