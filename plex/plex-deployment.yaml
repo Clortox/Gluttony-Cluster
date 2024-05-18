@@ -30,7 +30,7 @@ spec:
         - name: PLEX_CLAIM
           valueFrom:
             secretKeyRef:
-              name: plexclaim
+              name: plex-claim
               key: PLEXCLAIM
         ports:
         - containerPort: 32400
