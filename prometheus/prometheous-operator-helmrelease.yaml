@@ -13,10 +13,4 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-  values:
-    prometheus:
-      prometheusSpec:
-        retention: 10d  # Example of customizing retention period
-    alertmanager:
-      alertmanagerSpec:
-        retention: 10d
+  values: {}
