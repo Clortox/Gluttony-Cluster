@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: navidrome
+  namespace: navidrome-ns
+spec:
+  selector:
+    matchLabels:
+      app: navidrome
+  template:
+    metadata:
+      labels:
+        app: navidrome
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: gluttony
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - name: navidrome
+        image: deluan/navidrome:latest
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+        ports:
+        - containerPort: 4533
+        env:
+        - name: ND_BASEURL
+          value: "https://music.clortox.com"
+        - name: ND_CACHEFOLDER
+          value: "/cache"
+        - name: ND_MUSICFOLDER
+          value: "/music"
+        - name: ND_DATAFOLDER
+          value: "/data"
+
+        - name: ND_SCANSCHEDULE
+          value: "1h"
+        - name: ND_LOGLEVEL
+          value: "info"
+        - name: ND_SESSIONTIMEOUT
+          value: "24h"
+
+        - name: ND_ENABLESHARING
+          value: "true"
+        - name: ND_UILOGINBACKGROUNDURL
+          value: "https://general.api.clortox.com/images/background/today"
+        - name: ND_UIWELCOMEMESSAGE
+          value: "Lol. Lmao even"
+
+        - name: ND_REVERSEPROXYUSERHEADER
+          value: "X-Authentik-Username"
+        - name: ND_REVERSEPROXYWHITELIST
+          value: "0.0.0.0/0"
+            #- name: ND_SPOTIFY_ID
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: spotify-creds
+            #      key: CLIENT_ID
+            #- name: ND_SPOTIFY_SECRET
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: spotify-creds
+            #      key: CLIENT_ID
+        volumeMounts:
+        - name: data
+          mountPath: "/data"
+        - name: music
+          mountPath: "/music"
+          readOnly: true
+        - name: cache
+          mountPath: "/cache"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: navidrome-pvc-data
+      - name: music
+        persistentVolumeClaim:
+          claimName: navidrome-pvc-music
+      - name: cache
+        emptyDir: {}
