@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "<chart-version>"  # Specify the version you want to deploy
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  values:
+    prometheus:
+      prometheusSpec:
+        retention: 10d  # Example of customizing retention period
+    alertmanager:
+      alertmanagerSpec:
+        retention: 10d
