@@ -4,7 +4,7 @@ metadata:
   name: navidrome-services
   namespace: navidrome-ns
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 4533
