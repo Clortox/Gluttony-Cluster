@@ -19,7 +19,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: navidrome
+            name: navidrome-service
             port:
               number: 80  # Ensure this is the correct port your Navidrome service listens on
 
