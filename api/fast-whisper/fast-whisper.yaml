@@ -15,10 +15,10 @@ spec:
       labels:
         app: fast-whisper
     spec:
+      runtimeClassName: nvidia
       containers:
       - name: fast-whisper
         image: fedirz/faster-whisper-server:latest-cuda
-        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         resources:
