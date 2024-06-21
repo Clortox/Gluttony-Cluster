@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-apps
+      app: fast-whisper
     template:
       metadata:
         labels:
-          app: api-apps
+          app: fast-whisper
       spec:
         containers:
         - name: fast-whisper
