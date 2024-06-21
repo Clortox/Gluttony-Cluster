@@ -9,6 +9,9 @@ spec:
   - name: general-api
     port: 8080
     targetPort: 80
+  - name: faster-whisper
+    port: 8080
+    targetPort: 8080
 
   selector:
     app: api-apps

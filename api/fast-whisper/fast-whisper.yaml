@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fast-whisper
+  namespac: api-ns
+  labels:
+    app: fast-whisper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-apps
+    template:
+      metadata:
+        labels:
+          app: api-apps
+      spec:
+        containers:
+        - name: fast-whisper
+          image: fedirz/faster-whisper-server:latest-cuda
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8000
