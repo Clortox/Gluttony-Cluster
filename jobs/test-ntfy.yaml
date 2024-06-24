@@ -4,7 +4,7 @@ metadata:
   name: ntfy-notification-cronjob
   namespace: default
 spec:
-  schedule: "59 20 * * *"
+  schedule: "03 21 * * *"
   jobTemplate:
     spec:
       template:
