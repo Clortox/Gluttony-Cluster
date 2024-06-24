@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ntfy-notification-cronjob
+spec:
+  schedule: "55 20 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ntfy-notifier
+            image: curlimages/curl:7.80.0
+            command: ["/bin/sh", "-c"]
+            args:
+              - |
+                curl -X POST -d "this is a test notification from a k3s cronjob!" https://ntfy.sh/test
+            restartPolicy: OnFailure
