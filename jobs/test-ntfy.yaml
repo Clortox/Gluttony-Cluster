@@ -2,8 +2,9 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: ntfy-notification-cronjob
+  namespace: default
 spec:
-  schedule: "55 20 * * *"
+  schedule: "59 20 * * *"
   jobTemplate:
     spec:
       template:
