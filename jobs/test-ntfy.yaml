@@ -16,4 +16,3 @@ spec:
             args:
               - |
                 curl -X POST -d "this is a test notification from a k3s cronjob!" https://ntfy.sh/test
-            restartPolicy: OnFailure
