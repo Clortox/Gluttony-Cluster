@@ -24,3 +24,6 @@ spec:
         resources:
           limits:
             nvidia.com/gpu: 1
+        env:
+        - name: MAX_NO_DATA_SECONDS
+          value: "100.0"
