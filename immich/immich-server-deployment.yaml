@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: immich-server
-        image: ghcr.io/immich-app/immich-server:release
+        image: ghcr.io/immich-app/immich-server:v1.109.2
         args: ["start.sh", "immich"]
         ports:
         - containerPort: 3001

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: immich-machine-learning
-        image: ghcr.io/immich-app/immich-machine-learning:release
+        image: ghcr.io/immich-app/immich-machine-learning:v1.109.2
         env:
         - name: UPLOAD_LOCATION
           value: /usr/src/app/upload

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: immich-microservices
-        image: ghcr.io/immich-app/immich-server:release
+        image: ghcr.io/immich-app/immich-server:v1.109.2
         args: ["start.sh", "microservices"]
         env:
         - name: UPLOAD_LOCATION
