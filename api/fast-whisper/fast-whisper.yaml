@@ -27,3 +27,5 @@ spec:
         env:
         - name: MAX_NO_DATA_SECONDS
           value: "100.0"
+        - name: WHISPER_MODEL
+          value: "Systran/faster-distil-whisper-medium.en"
