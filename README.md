@@ -2,7 +2,7 @@
 
 [![Build Status](https://drone.clortox.com/api/badges/Infrastructure/Gluttony-Cluster/status.svg)](https://drone.clortox.com/Infrastructure/Gluttony-Cluster)
 
-A [Flux](https://fluxcd.io) repo describing my current at home kubernetes cluster.
+A [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) repo describing my current at home kubernetes cluster.
 
 ## Hardware
 
