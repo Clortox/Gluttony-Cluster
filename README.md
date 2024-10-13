@@ -37,6 +37,18 @@ A [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) repo describing my current
 ![network switch](./img/switch.jpg)
 ![zfs pool](./img/drives.jpg)
 
+## Software
+
+### Tier 0
+
+_Software that aids the cluster run_
+
+| Name | Use |
+| ---- | --- |
+| [Flux](fluxcd.io) | Deployments |
+| [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets)  | Secret management via git |
+| 
+
 ## Hosted Version
 
 Find the actual, in production version of this repo on my [Gitea Repository](https://git.clortox.com/Infrastructure/Gluttony-Cluster). Here you will also find in use issues denoting things I plan to add to this repository.
