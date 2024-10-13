@@ -72,12 +72,12 @@ data:
     ## environments when old versions of the controller did not require watch permissions on secrets
     ## for secret re-creation.
     ##
-    skipRecreate: false
+    skipRecreate: true
     ## @param keyrenewperiod Specifies key renewal period. Default 30 days
     ## e.g
     ## keyrenewperiod: "720h30m"
     ##
-    keyrenewperiod: ""
+    keyrenewperiod: "0s"
     ## @param rateLimit Number of allowed sustained request per second for verify endpoint
     ##
     rateLimit: ""
