@@ -77,7 +77,7 @@ data:
     ## e.g
     ## keyrenewperiod: "720h30m"
     ##
-    keyrenewperiod: "0s"
+    keyrenewperiod: ""
     ## @param rateLimit Number of allowed sustained request per second for verify endpoint
     ##
     rateLimit: ""
