@@ -47,7 +47,7 @@ _Software that aids the cluster run_
 | ---- | --- |
 | [Flux](fluxcd.io) | Deployments |
 | [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets)  | Secret management via git |
-| 
+| [MetalLB](https://metallb.universe.tf) | Load Balancer |
 
 ## Hosted Version
 
