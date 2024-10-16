@@ -48,6 +48,7 @@ _Software that aids the cluster run_
 | [Flux](fluxcd.io) | Deployments |
 | [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets)  | Secret management via git |
 | [MetalLB](https://metallb.universe.tf) | Load Balancer |
+| [Nvidia Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/index.html) | Nvidia Container Runtime Operator |
 
 ## Hosted Version
 
