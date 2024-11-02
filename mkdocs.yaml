@@ -9,7 +9,7 @@ theme:
   name: material
     #custom_dir: docs/overrides
   language: "en"
-    #logo: imgs/logo-white.svg
+  logo: img/logo.png
   features:
     - navigation.tabs
     - navigation.tabs.sticky

@@ -1,4 +1,5 @@
 .pre-commit-config.yaml
 .drone.yml
+mkdocs.yaml
 docs/
 ansible/
