@@ -1,0 +1,13 @@
+- name: Update all machines in cluster
+  hosts: debian_hosts
+  become: yes
+  become_method: sudo
+  vars_files:
+    - ../secrets/gluttonycluster-credentials.yaml
+  tasks:
+  - name: Update system
+    become_user: root
+    apt:
+      update_cache: yes
+      upgrade: dist
+    become: yes

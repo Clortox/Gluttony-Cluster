@@ -1,0 +1,63 @@
+- name: Bootstrap k3s cluster
+  hosts: k3s_masters
+  become: yes
+  vars_files:
+    # Secrets
+    - ../secrets/gluttonycluster-credentials.yaml
+    - ../secrets/k3s-token.yaml
+    - ../secrets/gitea-token.yaml
+    # Generic configurations
+    - ../vars/gitea-gluttony-cluster.yaml
+    - ../vars/k3s.yaml
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - curl
+          - apt-transport-https
+        state: present
+        update_cache: yes
+
+    - name: Check if k3s is already installed
+      command: which k3s
+      register: k3s_installed
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Install k3s master on the bootstrap node
+      shell: |
+        curl -sfL https://get.k3s.io | K3S_TOKEN={{ vault_k3s_token | quote }} INSTALL_K3S_VERSION={{ k3s_version }} sh -s - --disable traefik --disable servicelb server --cluster-init
+      when: inventory_hostname == primary_node_name and k3s_installed.rc != 0
+      register: k3s_install_bootstrap
+      ignore_errors: yes
+
+    - name: Install k3s on subsequent masters
+      shell: |
+        curl -sfL https://get.k3s.io | K3S_TOKEN={{ vault_k3s_token | quote }} INSTALL_K3S_VERSION={{ k3s_version }} sh -s - server --disable servicelb --server https://{{ hostvars[primary_node_name].ansible_host }}:6443 --token {{ vault_k3s_token | quote }}
+      when: inventory_hostname != primary_node_name and k3s_installed.rc != 0
+      ignore_errors: yes
+
+    - name: Ensure k3s service is running and enabled
+      service:
+        name: k3s
+        state: started
+        enabled: yes
+      when: k3s_installed.rc == 0
+
+    - name: Check if Flux is installed
+      command: which flux
+      register: flux_installed
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Install Flux CLI
+      shell: |
+        curl -s https://fluxcd.io/install.sh | sudo bash
+      when: flux_installed.rc != 0
+      ignore_errors: yes
+
+    - name: Bootstrap flux
+      shell: |
+        GITEA_TOKEN={{ vault_gitea_token | quote }} flux bootstrap gitea --owner={{ gitea_owner }} --repository={{ gitea_repository }} --hostname={{ gitea_hostname }} --personal=false --private=false --kubeconfig=/etc/rancher/k3s/k3s.yaml
+      when: inventory_hostname == primary_node_name
+      ignore_errors: no

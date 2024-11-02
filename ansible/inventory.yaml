@@ -1,0 +1,63 @@
+###############################################################################
+# Hosts #######################################################################
+###############################################################################
+
+network:
+  hosts:
+    bastion:
+      ansible_host: 10.0.3.64
+
+gluttony:
+  hosts:
+    gluttony:
+      ansible_host: 10.0.3.3
+      ansible_become_password: "{{ vault_gluttony_become_password }}"
+      longhorn_drive_uuid: "77703127-E9E2-EB44-A9B8-C61C3CAD6174"
+
+gluttony_gpu:
+  hosts:
+    gluttony_gpu:
+      ansible_host: 10.0.3.2
+      ansible_become_password: "{{ vault_gluttony_gpu_become_password }}"
+      longhorn_drive_uuid: "622C7470-1A12-3A46-B506-9DBFDCCA07A0"
+
+gluttony_m3:
+  hosts:
+    gluttony_m3:
+      ansible_host: 10.0.3.4
+      ansible_become_password: "{{ vault_gluttony_m3_become_password }}"
+      longhorn_drive_uuid: "F5122704-F411-F046-AE8F-F583B3A2D1A3"
+
+gluttony_nas:
+  hosts:
+    gluttony_nas:
+      ansible_host: 10.0.3.5
+
+################################################################################
+# Groups #######################################################################
+################################################################################
+
+k3s_masters:
+  children:
+    gluttony:
+    gluttony_gpu:
+    gluttony_m3:
+
+graphics_devices:
+  children:
+    gluttony:
+    gluttony_gpu:
+
+storage_devices:
+  children:
+    gluttony:
+
+datacenter:
+  children:
+    k3s_masters:
+    network:
+
+debian_hosts:
+  children:
+    k3s_masters:
+    network:

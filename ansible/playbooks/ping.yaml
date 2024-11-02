@@ -1,0 +1,10 @@
+- name: Alive ping test
+  hosts: datacenter
+  vars_files:
+    - ../secrets/gluttonycluster-credentials.yaml
+  tasks:
+  - name: Ping test
+    ansible.builtin.ping:
+  - name: Print message test
+    ansible.builtin.debug:
+      msg: Hello World!

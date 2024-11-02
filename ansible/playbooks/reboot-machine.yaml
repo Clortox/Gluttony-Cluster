@@ -1,0 +1,11 @@
+- name: Reboot machines
+  hosts: k3s_masters
+  become: yes
+  vars_files:
+    # Secrets
+    - ../secrets/gluttonycluster-credentials.yaml
+    # Generic configurations
+    - ../vars/k3s.yaml
+  tasks:
+    - name: Reboot the server
+      ansible.builtin.reboot:

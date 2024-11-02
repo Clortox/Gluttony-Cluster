@@ -1,0 +1,32 @@
+- name: Bootstrap zfs
+  hosts: storage_devices
+  become: yes
+  vars_files:
+    # Secrets
+    - ../secrets/gluttonycluster-credentials.yaml
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install ZFS utilities
+      apt:
+        name: zfsutils-linux
+        state: present
+        update_cache: yes
+
+    - name: Ensure ZFS module is loaded
+      modprobe:
+        name: zfs
+        state: present
+
+    - name: Verify ZFS installation
+      command: zfs version
+      register: zfs_version
+      ignore_errors: yes
+
+    - name: Show ZFS version if installed
+      debug:
+        msg: "ZFS installed successfully. Version info: {{ zfs_version.stdout }}"
+      when: zfs_version.rc == 0

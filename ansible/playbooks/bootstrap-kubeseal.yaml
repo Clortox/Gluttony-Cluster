@@ -1,0 +1,68 @@
+- name: Install kubeseal
+  hosts: k3s_masters
+  become: yes
+  vars_files:
+    # Secrets
+    - ../secrets/gluttonycluster-credentials.yaml
+  tasks:
+    - name: Check if kubeseal is installed
+      command: kubeseal --version
+      register: kubeseal_installed
+      ignore_errors: yes
+
+    - name: Fetch the latest sealed-secrets version using GitHub API
+      shell: >
+        curl -s https://api.github.com/repos/bitnami-labs/sealed-secrets/tags | jq -r '.[0].name' | cut -c 2-
+      register: kubeseal_version
+      when: kubeseal_installed.failed
+
+    - name: Check if the version was fetched successfully
+      fail:
+        msg: "Failed to fetch the latest KUBESEAL_VERSION"
+      when:
+        - kubeseal_installed.failed
+        - kubeseal_version.stdout == ""
+
+    - name: Set kubeseal version fact
+      set_fact:
+        kubeseal_version: "{{ kubeseal_version.stdout }}"
+      when: kubeseal_installed.failed
+
+    - name: Download kubeseal tarball
+      get_url:
+        url: "https://github.com/bitnami-labs/sealed-secrets/releases/download/v{{ kubeseal_version }}/kubeseal-{{ kubeseal_version }}-linux-amd64.tar.gz"
+        dest: "/root/kubeseal-{{ kubeseal_version }}-linux-amd64.tar.gz"
+        mode: '0644'
+      when: kubeseal_installed.failed
+
+    - name: Extract kubeseal binary
+      unarchive:
+        src: "/root/kubeseal-{{ kubeseal_version }}-linux-amd64.tar.gz"
+        dest: "/root/"
+        remote_src: yes
+        creates: "/root/kubeseal"
+      when: kubeseal_installed.failed
+
+    - name: Chown kubeseal binary to root
+      file:
+        path: "/root/kubeseal"
+        owner: root
+        group: root
+        mode: '0755'
+      when: kubeseal_installed.failed
+
+    - name: Install kubeseal
+      copy:
+        src: "/root/kubeseal"
+        dest: "/usr/local/bin/kubeseal"
+        mode: '0755'
+      become: true
+      when: kubeseal_installed.failed
+      notify: cleanup
+
+  handlers:
+    - name: cleanup
+      file:
+        path: "/tmp/kubeseal-{{ kubeseal_version }}-linux-amd64.tar.gz"
+        state: absent
+      when: kubeseal_installed.failed

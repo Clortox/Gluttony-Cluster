@@ -1,0 +1,39 @@
+- name: Update PAM configuration and deploy script for SSH login notifications
+  hosts: debian_hosts
+  become: yes
+  vars_files:
+    - ../secrets/gluttonycluster-credentials.yaml
+  tasks:
+    - name: Install preffered tooling
+      apt:
+        name:
+          - vim
+          - ncdu
+          - smartmontools
+          - jq
+        state: present
+        update_cache: yes
+    - name: Check if /etc/pam.d/sshd exists
+      ansible.builtin.stat:
+        path: /etc/pam.d/sshd
+      register: sshd_config
+
+    - name: Append pam_exec.so configuration to /etc/pam.d/sshd
+      ansible.builtin.lineinfile:
+        path: /etc/pam.d/sshd
+        line: 'session optional pam_exec.so /usr/bin/ntfy-ssh-login.sh'
+        create: no
+        state: present
+      when: sshd_config.stat.exists
+
+    - name: Check if ntfy-ssh-login.sh exists and has correct permissions
+      ansible.builtin.stat:
+        path: /usr/bin/ntfy-ssh-login.sh
+      register: ntfy_script
+
+    - name: Copy ntfy-ssh-login.sh script to /usr/bin/
+      ansible.builtin.copy:
+        src: ../artifacts/ntfy-ssh-login.sh
+        dest: /usr/bin/ntfy-ssh-login.sh
+        mode: '0755'
+      when: not (ntfy_script.stat.exists and ntfy_script.stat.mode == '0755')

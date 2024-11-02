@@ -1,0 +1,100 @@
+- name: Bootstrap debian-nvidia-cuda
+  hosts: graphics_devices
+  become: yes
+  vars_files:
+    # Secrets
+    - ../secrets/gluttonycluster-credentials.yaml
+
+  tasks:
+    - name: Update APT package index
+      apt:
+        update_cache: yes
+
+    - name: Install prerequisites
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - build-essential
+          - dkms
+          - curl
+          - gnupg2
+          - ca-certificates
+          - software-properties-common
+
+    - name: Add NVIDIA PPA repository
+      apt_repository:
+        repo: "ppa:graphics-drivers/ppa"
+        state: present
+
+    - name: Add NVIDIA container runtime GPG key
+      apt_key:
+        url: https://nvidia.github.io/nvidia-docker/gpgkey
+        state: present
+
+    - name: Add NVIDIA container runtime repository
+      apt_repository:
+        repo: "deb https://nvidia.github.io/libnvidia-container/stable/ubuntu18.04/$(ARCH) /"
+        filename: "nvidia-container-runtime"
+        state: present
+
+    - name: Update APT package index after adding PPA
+      apt:
+        update_cache: yes
+
+    - name: Install the latest NVIDIA driver
+      apt:
+        name: "{{ nvidia_driver }}"
+        state: present
+      vars:
+        nvidia_driver: "nvidia-driver-535"  # Replace with the latest driver version if needed
+
+    - name: Install CUDA toolkit (optional)
+      apt:
+        name: "{{ cuda_packages }}"
+        state: present
+      vars:
+        cuda_packages:
+          - nvidia-cuda-toolkit
+
+    - name: Install NVIDIA container runtime
+      apt:
+        name: "{{ nvidia_container_packages }}"
+        state: present
+      vars:
+        nvidia_container_packages:
+          - nvidia-container-toolkit
+          - nvidia-container-runtime
+
+    - name: Configure Docker to use the NVIDIA runtime
+      lineinfile:
+        path: /etc/docker/daemon.json
+        create: yes
+        line: '"default-runtime": "nvidia"'
+        insertafter: '"runtimes": {'
+        state: present
+      notify: Restart Docker
+
+    - name: Reboot the server to apply changes
+      reboot:
+        msg: "Rebooting to apply NVIDIA driver installation"
+
+    - name: Verify NVIDIA driver installation
+      shell: nvidia-smi
+      register: nvidia_smi_output
+      ignore_errors: yes
+
+    - name: Display NVIDIA driver installation result
+      debug:
+        var: nvidia_smi_output.stdout
+
+    - name: Fail if NVIDIA driver is not installed correctly
+      fail:
+        msg: "NVIDIA driver installation failed. Please check the output."
+      when: "'NVIDIA-SMI' not in nvidia_smi_output.stdout"
+
+  handlers:
+    - name: Restart Docker
+      service:
+        name: docker
+        state: restarted

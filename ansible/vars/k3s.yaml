@@ -1,0 +1,2 @@
+  primary_node_name: "gluttony_gpu"
+  k3s_version: "v1.31.1+k3s1"

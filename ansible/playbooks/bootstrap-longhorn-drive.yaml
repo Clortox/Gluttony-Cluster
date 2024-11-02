@@ -1,0 +1,172 @@
+- name: Bootstrap longhorn drive
+  hosts: k3s_masters
+  become: yes
+  vars_files:
+    - ../secrets/gluttonycluster-credentials.yaml
+    - ../vars/k3s.yaml
+  vars:
+    longhorn_mount_point: "/media/longhorn"
+
+  tasks:
+    - name: Install requirements
+      apt:
+        name:
+          - nfs-common
+          - open-iscsi
+        state: present
+        update_cache: yes
+
+    - name: Ensure iscsi_tcp kernel module is loaded
+      ansible.builtin.modprobe:
+        name: iscsi_tcp
+        state: present
+
+    - name: Ensure iscsi_tcp module is loaded on boot
+      ansible.builtin.copy:
+        dest: /etc/modules-load.d/iscsi_tcp.conf
+        content: |
+          iscsi_tcp
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Get the device corresponding to the drive UUID (case-insensitive)
+      shell: |
+        lsblk -dn -o NAME,PTUUID | awk '{if (NF == 2 && tolower($2) == tolower("{{ longhorn_drive_uuid }}")) print "/dev/" $1}'
+      register: drive_device
+      failed_when: drive_device.stdout == ""
+      changed_when: false
+
+    - name: Debug drive_device
+      debug:
+        msg: "Drive device is {{ drive_device.stdout }}"
+
+    - name: Set drive device fact
+      set_fact:
+        drive_device: "{{ drive_device.stdout }}"
+
+    - name: Get partition device name
+      set_fact:
+        partition_device: "{{ drive_device }}1"
+
+    - name: Check if partition exists
+      stat:
+        path: "{{ partition_device }}"
+      register: partition_stat
+
+    - name: Create partition on the drive
+      parted:
+        device: "{{ drive_device }}"
+        number: 1
+        state: present
+        align: optimal
+        label: gpt
+        unit: MiB
+        part_start: 0%
+        part_end: 100%
+        name: longhorn
+      when: partition_stat.stat.exists == false
+
+    - name: Ensure partition table is re-read
+      command: "partprobe {{ drive_device }}"
+      when: partition_stat.stat.exists == false
+
+    - name: Wait for partition to be available
+      wait_for:
+        path: "{{ partition_device }}"
+        timeout: 10
+      when: partition_stat.stat.exists == false
+
+    - name: Check if filesystem exists on the partition
+      command: "blkid -o value -s TYPE {{ partition_device }}"
+      register: fs_type
+      failed_when: false
+      changed_when: false
+
+    - name: Format the partition with ext4
+      filesystem:
+        fstype: ext4
+        dev: "{{ partition_device }}"
+      when: fs_type.stdout == ""
+
+    - name: Get the UUID of the partition
+      command: "blkid -o value -s UUID {{ partition_device }}"
+      register: partition_uuid
+
+    - name: Ensure the mount point directory exists
+      file:
+        path: "{{ longhorn_mount_point }}"
+        state: directory
+        mode: '0755'
+
+    - name: Ensure the partition is mounted via fstab
+      mount:
+        path: "{{ longhorn_mount_point }}"
+        src: "/dev/disk/by-uuid/{{ partition_uuid.stdout }}"
+        fstype: ext4
+        opts: defaults
+        state: mounted
+
+    - name: Check if the flag file exists
+      stat:
+        path: /etc/.longhorn_initialized
+      register: flag_stat
+
+    - name: Remove all contents from the mount point
+      shell: "rm -rf {{ longhorn_mount_point }}/*"
+      when: flag_stat.stat.exists == false
+
+    - name: Create the flag file
+      file:
+        path: /etc/.longhorn_initialized
+        state: touch
+      when: flag_stat.stat.exists == false
+
+    - name: Check if /etc/multipath.conf exists
+      stat:
+        path: /etc/multipath.conf
+      register: multipath_conf_stat
+
+    - name: Create /etc/multipath.conf with content if it does not exist
+      copy:
+        dest: /etc/multipath.conf
+        content: |
+          blacklist {
+              devnode "^sd[a-z0-9]+"
+          }
+        owner: root
+        group: root
+        mode: '0644'
+      when: not multipath_conf_stat.stat.exists
+
+    - name: Check if blacklist block exists in /etc/multipath.conf
+      shell: grep -q '^[[:space:]]*blacklist[[:space:]]*{' /etc/multipath.conf
+      register: blacklist_block_check
+      failed_when: false
+      changed_when: false
+      when: multipath_conf_stat.stat.exists
+
+    - name: Append blacklist block to /etc/multipath.conf if it does not exist
+      blockinfile:
+        path: /etc/multipath.conf
+        block: |
+          blacklist {
+              devnode "^sd[a-z0-9]+"
+          }
+        insertafter: EOF
+        state: present
+      when:
+        - multipath_conf_stat.stat.exists
+        - blacklist_block_check.rc != 0
+
+    - name: Debug warning if blacklist block already exists
+      debug:
+        msg: "Warning: 'blacklist' block already exists in /etc/multipath.conf on this host."
+      when:
+        - multipath_conf_stat.stat.exists
+        - blacklist_block_check.rc == 0
+
+    - name: Restart the multipathd service
+      service:
+        name: multipathd
+        state: restarted

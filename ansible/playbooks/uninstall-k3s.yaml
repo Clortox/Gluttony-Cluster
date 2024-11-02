@@ -1,0 +1,29 @@
+- name: Uninstall k3s cluster
+  hosts: k3s_masters
+  become: yes
+  vars_files:
+    # Secrets
+    - ../secrets/gluttonycluster-credentials.yaml
+    # Generic configurations
+    - ../vars/gitea-gluttony-cluster.yaml
+    - ../vars/k3s.yaml
+  tasks:
+    - name: Check if k3s is already installed
+      command: which k3s
+      register: k3s_installed
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Ensure k3s service is stopped
+      service:
+        name: k3s
+        state: stopped
+        enabled: yes
+      when: k3s_installed.rc == 0
+
+    - name: Uninstall k3s
+      shell: |
+        k3s-uninstall.sh
+      when: k3s_installed.rc == 0
+      register: k3s_install_bootstrap
+      ignore_errors: yes
