@@ -1,0 +1,46 @@
+site_name: Gluttony-Cluster
+site_url: https://docs.clortox.com/cluster
+site_description: Documentation on maintaining a datacenter at home
+docs_dir: docs/
+repo_name: Gitea
+repo_url: https://git.clortox.com/Infrastructure/Gluttony-Cluster
+
+theme:
+  name: material
+    #custom_dir: docs/overrides
+  language: "en"
+    #logo: imgs/logo-white.svg
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.footer
+    - content.action.edit
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight
+    #- pymdownx.superfences:
+    #    custom_fences:
+    #      - name: mermaid
+    #        class: mermaid
+    #        format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - footnotes
+  - def_list
+    #- attr_list
+    #- pymdownx.tabbed:
+    #    alternate_style: true
+    #- pymdownx.details
+    #- pymdownx.emoji:
+    #    emoji_index: !!python/name:materialx.emoji.twemoji
+    #    emoji_generator: !!python/name:materialx.emoji.to_svg
+
+extra:
+  generator: false
+  version:
+    method: mike
+    provider: mike
+    default: latest

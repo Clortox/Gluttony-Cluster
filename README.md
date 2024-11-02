@@ -33,9 +33,9 @@ A [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) repo describing my current
   - Dedicated 1500W ciruit breaker
   - 1100VA UPS
 
-![server rack](./img/rack.jpg)
-![network switch](./img/switch.jpg)
-![zfs pool](./img/drives.jpg)
+![server rack](./docs/img/rack.jpg)
+![network switch](./docs/img/switch.jpg)
+![zfs pool](./docs/img/drives.jpg)
 
 ## Software
 
