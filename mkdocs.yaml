@@ -13,13 +13,22 @@ nav:
     - Setup Cluster: setup.md
   - User Documentation:
     - Overview: user/index.md
-    - Registering a mail account: user/mailcow.md
-    - Registering an account: user/account.md
-    - Requesting Media: user/request.md
-    - Downloading Media: user/download.md
+    - Accounts:
+      - Registering a mail account: user/mailcow.md
+      - Registering an account: user/account.md
+    - Media:
+      - Requesting Media: user/request.md
+      - Downloading Media: user/download.md
   - Technical:
-    - MetalLB: services/metallb.md
-    - Sealed Secrets: services/sealed-secrets.md
+    - Overview: technical/index.md
+    - Conventions: technical/conventions.md
+    - Infrastructure:
+      - MetalLB: technical/metallb.md
+      - Sealed Secrets: technical/sealed-secrets.md
+      - Nvidia Operator: technical/nvidia.md
+      - Longhorn: technical/longhorn.md
+    - Misc:
+      - NFS: technical/nfs-storage.md
 
 theme:
   name: material
