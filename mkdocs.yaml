@@ -4,6 +4,7 @@ site_description: Documentation on maintaining a datacenter at home
 docs_dir: docs/
 repo_name: Gitea
 repo_url: https://git.clortox.com/Infrastructure/Gluttony-Cluster
+edit_uri: src/branch/main/docs
 
 nav:
   - Introduction:
@@ -12,17 +13,31 @@ nav:
     - Setup Cluster: setup.md
   - User Documentation:
     - Overview: user/index.md
+    - Registering a mail account: user/mailcow.md
     - Registering an account: user/account.md
     - Requesting Media: user/request.md
     - Downloading Media: user/download.md
   - Technical:
     - MetalLB: services/metallb.md
+    - Sealed Secrets: services/sealed-secrets.md
 
 theme:
   name: material
     #custom_dir: docs/overrides
   language: "en"
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
   logo: img/logo.png
+  favicon: img/logo.png
   features:
     - navigation.tabs
     - navigation.tabs.sticky

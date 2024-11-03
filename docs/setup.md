@@ -37,3 +37,9 @@ Its important to note that this playbook will bootstrap flux, which will push a 
 to your git repo that you configured. Therefore, do a `git pull` before 
 continuing past this step.
 
+## Local machine `kubectl` (Optional)
+
+If you want `kubectl` on your local machine, just copy over `/etc/rancher/k3s/k3s.yaml`
+from any master node to your local machine at `~/.kube/config`.
+Just be sure to adjust the server url in the config file to point to an actual server.
+
