@@ -2,6 +2,8 @@
 
 Welcome to the documentation for my k3s cluster, aka my datacenter at home.
 
+If you are looking for user documentation, navigate to [the user docs](./user/index.md)
+
 ## About this project
 
 This project is a small datacenter that I run in my house. 

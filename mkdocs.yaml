@@ -8,8 +8,15 @@ repo_url: https://git.clortox.com/Infrastructure/Gluttony-Cluster
 nav:
   - Introduction:
     - Overview: index.md
-    - Architecture: architecture.md
-    - Setup: setup.md
+    - Cluster Architecture: architecture.md
+    - Setup Cluster: setup.md
+  - User Documentation:
+    - Overview: user/index.md
+    - Registering an account: user/account.md
+    - Requesting Media: user/request.md
+    - Downloading Media: user/download.md
+  - Technical:
+    - MetalLB: services/metallb.md
 
 theme:
   name: material

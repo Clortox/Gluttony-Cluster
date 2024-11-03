@@ -30,10 +30,10 @@ bootstrap-longhorn-drive.yaml
 
 ## Setup Cluster (Flux)
 
-Flux is the tool that will pull from the git repository and update the cluster state.
-If you ran the ansible scripts, all hosts will have `flux` installed.
-To bootstrap the cluster, run the following,
+To install K3S into the cluster, just run the ansible playbook `bootstrap-k3s.yaml`. 
+Thats it!
 
-```bash
-flux bootstrap gitea --owner=Infrastructure --repository=Gluttony-Cluster --private=false --path=cluster/ --branch=main
-```
+Its important to note that this playbook will bootstrap flux, which will push a commit
+to your git repo that you configured. Therefore, do a `git pull` before 
+continuing past this step.
+
