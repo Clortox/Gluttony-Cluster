@@ -58,6 +58,6 @@
 
     - name: Bootstrap flux
       shell: |
-        GITEA_TOKEN={{ vault_gitea_token | quote }} flux bootstrap gitea --owner={{ gitea_owner }} --repository={{ gitea_repository }} --hostname={{ gitea_hostname }} --personal=false --private=false --kubeconfig=/etc/rancher/k3s/k3s.yaml
+        GITEA_TOKEN={{ vault_gitea_token | quote }} flux bootstrap gitea --owner={{ gitea_owner }} --repository={{ gitea_repository }} --hostname={{ gitea_hostname }} --personal=false --private=false --kubeconfig=/etc/rancher/k3s/k3s.yaml --path cluster/
       when: inventory_hostname == primary_node_name
       ignore_errors: no
