@@ -5,6 +5,12 @@ docs_dir: docs/
 repo_name: Gitea
 repo_url: https://git.clortox.com/Infrastructure/Gluttony-Cluster
 
+nav:
+  - Introduction:
+    - Overview: index.md
+    - Architecture: architecture.md
+    - Setup: setup.md
+
 theme:
   name: material
     #custom_dir: docs/overrides
@@ -22,11 +28,11 @@ theme:
 
 markdown_extensions:
   - pymdownx.highlight
-    #- pymdownx.superfences:
-    #    custom_fences:
-    #      - name: mermaid
-    #        class: mermaid
-    #        format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
   - footnotes
   - def_list
