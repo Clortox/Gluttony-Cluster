@@ -22,13 +22,19 @@ nav:
   - Technical:
     - Overview: technical/index.md
     - Conventions: technical/conventions.md
-    - Infrastructure:
+    - Tier 0 (Infrastructure):
       - MetalLB: technical/metallb.md
       - Sealed Secrets: technical/sealed-secrets.md
       - Nvidia Operator: technical/nvidia.md
       - Longhorn: technical/longhorn.md
+    - Tier 1 (Dependencies):
+      - Postgresql: technical/postgresql.md
+      - PGAdmin: technical/pgadmin.md
+        #- Tier 2 (User Apps):
     - Misc:
       - NFS: technical/nfs-storage.md
+      - Seal-a-secret: technical/seal-a-secret.md
+      - Networking: technical/inter-pod-networking.md
 
 theme:
   name: material

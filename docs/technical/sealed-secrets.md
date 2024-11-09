@@ -56,3 +56,12 @@ one every 30 days (configurable value).
 *All secrets* are valid for decrypting secrets in the git repo. If you want it to decrypt
 older stuff, add the older cert as outlined above.
 
+## Fetch Current Cert
+
+To grab the current cert, run
+
+```bash
+kubeseal --fetch-cert \
+  --controller-namespace sealed-secrets \
+  --controller-name sealed-secrets-865dc66876-74smf
+```
