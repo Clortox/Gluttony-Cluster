@@ -255,7 +255,7 @@ spec:
       uri: ""
     ## @param postgresqlDataDir PostgreSQL data dir folder
     ##
-    postgresqlDataDir: /bitnami/postgresql/data
+    postgresqlDataDir: /bitnami/postgresql
     ## @param postgresqlSharedPreloadLibraries Shared preload libraries (comma-separated list)
     ##
     postgresqlSharedPreloadLibraries: "pgaudit"
@@ -488,7 +488,7 @@ spec:
         runAsUser: 1001
         runAsGroup: 0
         runAsNonRoot: true
-        allowPrivilegeEscalation: false
+        allowPrivilegeEscalation: true
         seccompProfile:
           type: RuntimeDefault
         capabilities:
