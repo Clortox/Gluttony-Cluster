@@ -488,7 +488,7 @@ spec:
         runAsUser: 1001
         runAsGroup: 0
         runAsNonRoot: true
-        allowPrivilegeEscalation: true
+        allowPrivilegeEscalation: false
         seccompProfile:
           type: RuntimeDefault
         capabilities:
