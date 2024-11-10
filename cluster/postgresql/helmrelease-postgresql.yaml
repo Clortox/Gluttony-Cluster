@@ -322,7 +322,7 @@ spec:
       ##   host all all localhost trust
       ##   host mydatabase mysuser 192.168.0.0/24 md5
       ##
-      pgHbaConfiguration: |
+      pgHbaConfiguration: |-
           # Allow initial connections without a password
           local   all             postgres                               trust
           host    all             postgres           0.0.0.0/0          trust
