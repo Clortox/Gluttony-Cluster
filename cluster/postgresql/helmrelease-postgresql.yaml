@@ -49,10 +49,10 @@ spec:
           username: "clortox"
             #password: ""
           database: ""
-          existingSecret: "postgresql-default-credentials"
+          #existingSecret: "postgresql-default-credentials"
           secretKeys:
-            adminPasswordKey: "postgres-password"
-            userPasswordKey: "password"
+            #adminPasswordKey: "postgres-password"
+            #userPasswordKey: "password"
             replicationPasswordKey: ""
         ## @param global.postgresql.service.ports.postgresql PostgreSQL service port (overrides `service.ports.postgresql`)
         ##
@@ -167,10 +167,10 @@ spec:
       ## @param auth.secretKeys.userPasswordKey Name of key in existing secret to use for PostgreSQL credentials. Only used when `auth.existingSecret` is set.
       ## @param auth.secretKeys.replicationPasswordKey Name of key in existing secret to use for PostgreSQL credentials. Only used when `auth.existingSecret` is set.
       ##
-      secretKeys:
-        adminPasswordKey: postgres-password
-        userPasswordKey: password
-        replicationPasswordKey: replication-password
+      #secretKeys:
+      #  adminPasswordKey: postgres-password
+      #  userPasswordKey: password
+      #  replicationPasswordKey: replication-password
       ## @param auth.usePasswordFiles Mount credentials as a files instead of using an environment variable
       ##
       usePasswordFiles: false
@@ -322,7 +322,11 @@ spec:
       ##   host all all localhost trust
       ##   host mydatabase mysuser 192.168.0.0/24 md5
       ##
-      pgHbaConfiguration: ""
+      pgHbaConfiguration: |
+          # Allow initial connections without a password
+          local   all             postgres                               trust
+          host    all             postgres           0.0.0.0/0          trust
+          host    all             postgres           ::/0               trust
       ## @param primary.existingConfigmap Name of an existing ConfigMap with PostgreSQL Primary configuration
       ## NOTE: `primary.configuration` and `primary.pgHbaConfiguration` will be ignored
       ##
