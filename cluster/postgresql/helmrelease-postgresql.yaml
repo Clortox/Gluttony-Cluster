@@ -255,7 +255,7 @@ spec:
       uri: ""
     ## @param postgresqlDataDir PostgreSQL data dir folder
     ##
-    postgresqlDataDir: /bitnami/postgresql
+    postgresqlDataDir: /bitnami/postgresql/data
     ## @param postgresqlSharedPreloadLibraries Shared preload libraries (comma-separated list)
     ##
     postgresqlSharedPreloadLibraries: "pgaudit"
